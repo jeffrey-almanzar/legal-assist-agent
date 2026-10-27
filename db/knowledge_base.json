@@ -1,0 +1,592 @@
+[
+  {
+    "category": "firm",
+    "question": "How do I book a consultation with an attorney?",
+    "aliases": [
+      "How do I make an appointment?",
+      "Can I meet with a lawyer by video?"
+    ],
+    "answer": "Call our Tampa office at (813) 555-0142, Monday to Friday from 8:30 a.m. to 5:30 p.m., or book online at bayvale-legal.example.com/book. Consultations are available in person at our downtown Tampa office or by video call.",
+    "sources": []
+  },
+  {
+    "category": "firm",
+    "question": "How much does an initial consultation cost?",
+    "aliases": [
+      "Do you charge for a consultation?",
+      "Is there a free consultation?"
+    ],
+    "answer": "Initial consultations are free for personal injury, employment, landlord-tenant, and criminal defense matters and last about 30 minutes. Family law and estate planning consultations are 60 minutes and cost $150, which is credited toward your fees if you hire us.",
+    "sources": []
+  },
+  {
+    "category": "firm",
+    "question": "How do your legal fees work?",
+    "aliases": [
+      "How much do you charge?",
+      "What is a contingency fee?",
+      "Do I have to pay anything upfront for an injury case?"
+    ],
+    "answer": "It depends on the type of case. Personal injury cases are handled on a contingency fee, so you pay no attorney's fee unless we recover money for you. Our percentage follows the limits in the Florida Bar rules, typically 33 1/3% of the first $1 million if the case resolves before the defendant answers a lawsuit, and 40% after that. Family law and employment cases are billed hourly against a retainer. Estate planning documents and most criminal defense cases are billed at a flat fee quoted in advance. Every fee arrangement is put in a written agreement before any work begins.",
+    "sources": [
+      "Rule Regulating The Florida Bar 4-1.5"
+    ]
+  },
+  {
+    "category": "firm",
+    "question": "Do you offer payment plans?",
+    "aliases": [],
+    "answer": "Yes. For flat-fee matters such as estate planning and criminal defense, we offer monthly payment plans. We accept credit cards, debit cards, checks, and bank transfers.",
+    "sources": []
+  },
+  {
+    "category": "firm",
+    "question": "What should I bring to my first meeting with a lawyer?",
+    "aliases": [],
+    "answer": "Bring a photo ID, every document related to your matter (contracts, leases, letters, court papers, police reports, medical bills, insurance policies, emails or texts), and a short written timeline of what happened with dates. If someone has sued you or you received a court notice, bring it, because those often have short response deadlines.",
+    "sources": []
+  },
+  {
+    "category": "firm",
+    "question": "Do you have attorneys who speak Spanish?",
+    "aliases": [],
+    "answer": "Yes. Several of our attorneys and staff are fluent in Spanish, and consultations can be held entirely in Spanish. Let us know when you book.",
+    "sources": []
+  },
+  {
+    "category": "firm",
+    "question": "What types of cases does your firm handle?",
+    "aliases": [
+      "Can you help with immigration?",
+      "Do you handle bankruptcy or tax cases?",
+      "What kind of lawyer do I need?"
+    ],
+    "answer": "Bayvale Legal Group handles family law, estate planning and probate, landlord-tenant disputes, employment law, personal injury, criminal defense and traffic, small claims and consumer matters, and small business formation. We do not handle immigration, bankruptcy, tax, or patent matters. For those, we recommend The Florida Bar Lawyer Referral Service at 1-800-342-8011.",
+    "sources": []
+  },
+  {
+    "category": "firm",
+    "question": "Do you handle cases outside Tampa?",
+    "aliases": [],
+    "answer": "Our attorneys regularly appear in Hillsborough, Pinellas, Pasco, and Polk counties, and we can advise on Florida law statewide, often by video. Our attorneys are licensed in Florida only, so we cannot represent you in a case in another state.",
+    "sources": []
+  },
+  {
+    "category": "firm",
+    "question": "Is what I type into this assistant confidential, and does it make me a client?",
+    "aliases": [],
+    "answer": "Using this assistant does not create an attorney-client relationship, and it gives general information, not legal advice. Please do not share sensitive details here. Information you share with one of our attorneys in a consultation is kept confidential under the Florida Bar rules, even if you don't end up hiring us.",
+    "sources": [
+      "Rule Regulating The Florida Bar 4-1.18"
+    ]
+  },
+  {
+    "category": "firm",
+    "question": "How quickly will an attorney get back to me?",
+    "aliases": [],
+    "answer": "We respond to new inquiries within one business day. If you have a court deadline in the next few days, or you or a family member has just been arrested, call the office directly so we can prioritize it.",
+    "sources": []
+  },
+  {
+    "category": "family",
+    "question": "What are the requirements to file for divorce in Florida?",
+    "aliases": [
+      "How long do I have to live in Florida to get divorced?",
+      "Do I have to prove my spouse did something wrong to get a divorce?"
+    ],
+    "answer": "At least one spouse must have lived in Florida for at least six months before filing. Florida is a no-fault state, so you only need to state that the marriage is irretrievably broken; you do not have to prove wrongdoing. The case is started by filing a petition for dissolution of marriage in circuit court.",
+    "sources": [
+      "Fla. Stat. § 61.021",
+      "Fla. Stat. § 61.052"
+    ]
+  },
+  {
+    "category": "family",
+    "question": "How long does a divorce take in Florida?",
+    "aliases": [],
+    "answer": "A court cannot enter a final judgment until at least 20 days after the petition is filed. An uncontested divorce, where both spouses have signed a settlement agreement, can often be finished in one to three months. A contested divorce usually takes many months and sometimes more than a year, depending on the issues, financial disclosure, required mediation, and the court's schedule. Parents with minor children must also complete a parenting course.",
+    "sources": [
+      "Fla. Stat. § 61.19",
+      "Fla. Stat. § 61.21",
+      "Fla. Fam. L. R. P. 12.285"
+    ]
+  },
+  {
+    "category": "family",
+    "question": "What is a simplified dissolution of marriage in Florida?",
+    "aliases": [],
+    "answer": "It is a faster, simpler divorce process for couples who agree on everything. You qualify only if you have no minor or dependent children together and the wife is not pregnant, neither spouse is seeking alimony, you have agreed on how to divide your property and debts, and you both agree the marriage is irretrievably broken. Both spouses must sign the paperwork and attend the final hearing.",
+    "sources": [
+      "Fla. Fam. L. R. P. 12.105"
+    ]
+  },
+  {
+    "category": "family",
+    "question": "How is property divided in a Florida divorce?",
+    "aliases": [],
+    "answer": "Florida uses equitable distribution, and the court starts from the presumption that marital assets and debts should be divided equally unless there is a reason to divide them differently. Marital property is generally anything either spouse acquired during the marriage. Nonmarital property, such as assets owned before the marriage or gifts and inheritances received by one spouse and kept separate, usually stays with that spouse, although an increase in its value caused by marital funds or effort can be marital.",
+    "sources": [
+      "Fla. Stat. § 61.075"
+    ]
+  },
+  {
+    "category": "family",
+    "question": "How does alimony work in Florida?",
+    "aliases": [
+      "Is there permanent alimony in Florida?",
+      "How much spousal support will I have to pay?"
+    ],
+    "answer": "Since July 1, 2023, Florida courts can no longer award permanent alimony. The available types are bridge-the-gap (up to 2 years), rehabilitative (up to 5 years, tied to a plan for education or training), and durational. Durational alimony is not available for marriages under 3 years and is capped at 50% of the length of a marriage under 10 years, 60% for 10 to 20 years, and 75% for 20 years or more. The amount is generally limited to the lesser of the recipient's reasonable need or 35% of the difference between the spouses' net incomes.",
+    "sources": [
+      "Fla. Stat. § 61.08",
+      "SB 1416 (2023)"
+    ]
+  },
+  {
+    "category": "family",
+    "question": "How is child custody decided in Florida?",
+    "aliases": [
+      "Will I get 50/50 custody?",
+      "How does the court decide which parent the children live with?"
+    ],
+    "answer": "Florida doesn't use the word custody. Courts decide parental responsibility (who makes major decisions, which is usually shared) and time-sharing (the schedule for when the child is with each parent), set out in a parenting plan. Since July 1, 2023, there is a rebuttable presumption that equal time-sharing is in the child's best interests. A parent who wants a different schedule must prove that equal time-sharing is not in the child's best interests, and the court weighs the best-interest factors listed in the statute.",
+    "sources": [
+      "Fla. Stat. § 61.13"
+    ]
+  },
+  {
+    "category": "family",
+    "question": "How is child support calculated in Florida?",
+    "aliases": [],
+    "answer": "Florida uses income-shares guidelines based on both parents' net incomes, the number of children, health insurance and child care costs, and the number of overnights each parent has. If each parent has the child for at least 20% of overnights, the calculation is adjusted for substantial time-sharing. Support generally continues until the child turns 18, or up to 19 if the child is still in high school and expected to graduate before then.",
+    "sources": [
+      "Fla. Stat. § 61.30",
+      "Fla. Stat. § 743.07"
+    ]
+  },
+  {
+    "category": "family",
+    "question": "Can child support or alimony be changed after the divorce?",
+    "aliases": [],
+    "answer": "Child support can be modified when there is a substantial change in circumstances, such as a significant change in either parent's income or in the time-sharing schedule; for child support, a guideline amount that differs from the current order by at least 15% or $50 is generally enough. Alimony can also be modified for a substantial change in circumstances, unless the agreement says it is non-modifiable. Until a court changes the order, the existing order stays in effect.",
+    "sources": [
+      "Fla. Stat. § 61.14",
+      "Fla. Stat. § 61.30"
+    ]
+  },
+  {
+    "category": "family",
+    "question": "Can I move away with my child after a divorce in Florida?",
+    "aliases": [],
+    "answer": "If you want to move your principal residence more than 50 miles away for at least 60 consecutive days, you need either a written agreement signed by the other parent or the court's permission. Moving without one of those can be held against you in later time-sharing decisions and may lead to an order to return the child.",
+    "sources": [
+      "Fla. Stat. § 61.13001"
+    ]
+  },
+  {
+    "category": "family",
+    "question": "How do I get a restraining order for domestic violence in Florida?",
+    "aliases": [],
+    "answer": "In Florida this is called an injunction for protection. You can file a petition with the clerk of the circuit court in your county, and there is no filing fee. A judge can issue a temporary injunction the same day without the other person present, which lasts up to 15 days until a full hearing is held. Violating an injunction is a crime. If you are in immediate danger, call 911. The Florida Domestic Violence Hotline is 1-800-500-1119.",
+    "sources": [
+      "Fla. Stat. § 741.30"
+    ]
+  },
+  {
+    "category": "family",
+    "question": "Are prenuptial agreements enforceable in Florida?",
+    "aliases": [],
+    "answer": "Yes, if the agreement is in writing and signed by both parties. It can cover property, debts, and alimony, but it cannot reduce a child's right to support. A court may refuse to enforce it if a party did not sign voluntarily, it was obtained through fraud or duress, or it is unconscionable and the party did not receive fair disclosure of the other's finances. It is best for each person to have their own lawyer and to sign well before the wedding.",
+    "sources": [
+      "Fla. Stat. § 61.079"
+    ]
+  },
+  {
+    "category": "estate",
+    "question": "What makes a will valid in Florida?",
+    "aliases": [],
+    "answer": "The person making the will must be at least 18 and of sound mind. The will must be in writing and signed at the end by that person in the presence of two witnesses, who also sign in the presence of the person and each other. A handwritten will that isn't signed this way is not valid in Florida. Adding a self-proving affidavit signed before a notary means the witnesses won't need to testify later. After a death, whoever holds the original will must file it with the clerk of court within 10 days of learning of the death.",
+    "sources": [
+      "Fla. Stat. § 732.502",
+      "Fla. Stat. § 732.503",
+      "Fla. Stat. § 732.901"
+    ]
+  },
+  {
+    "category": "estate",
+    "question": "What happens if someone dies without a will in Florida?",
+    "aliases": [
+      "Who inherits if there is no will?",
+      "My spouse died without a will. Do I get everything?"
+    ],
+    "answer": "Florida's intestacy law decides who inherits. If the person was married and all of their children are also the surviving spouse's children (and the spouse has no other children), the spouse inherits everything. Otherwise, the spouse receives half and the person's descendants share the other half. With no spouse, the estate goes to descendants, then parents, then siblings and their descendants. Special rules apply to a homestead, which often passes as a life estate to the spouse with the remainder to the children.",
+    "sources": [
+      "Fla. Stat. § 732.102",
+      "Fla. Stat. § 732.103",
+      "Fla. Stat. § 732.401"
+    ]
+  },
+  {
+    "category": "estate",
+    "question": "Should I have a will or a living trust in Florida?",
+    "aliases": [],
+    "answer": "A will directs who receives your property, but the assets usually go through probate court. A revocable living trust lets assets titled in the trust pass to your beneficiaries without probate and keeps the details private, but you must actually transfer assets into it, and it costs more to set up. People with a trust also sign a pour-over will to catch anything left outside it. Which is better depends on your assets, family, and goals.",
+    "sources": [
+      "Fla. Stat. ch. 736",
+      "Fla. Stat. § 736.0403"
+    ]
+  },
+  {
+    "category": "estate",
+    "question": "How long does probate take in Florida?",
+    "aliases": [
+      "Do I have to go through probate?",
+      "What is summary administration?"
+    ],
+    "answer": "Formal administration usually takes at least six months and often a year or more, because creditors have three months after the first publication of the notice to creditors to file claims. Summary administration is a faster, simpler process available when the decedent has been dead more than two years, or when the probate estate (excluding exempt property such as the homestead) is worth $150,000 or less. That limit was $75,000 before July 1, 2026. In most Florida probate cases, the personal representative must be represented by an attorney.",
+    "sources": [
+      "Fla. Stat. § 733.702",
+      "Fla. Stat. § 735.201",
+      "Ch. 2026-57, Laws of Fla.",
+      "Fla. Prob. R. 5.030"
+    ]
+  },
+  {
+    "category": "estate",
+    "question": "Which assets avoid probate in Florida?",
+    "aliases": [],
+    "answer": "Assets that pass directly to someone by their terms generally avoid probate: property held jointly with right of survivorship, bank accounts with a payable-on-death designation, investment accounts with a transfer-on-death designation, life insurance and retirement accounts with a living named beneficiary, and assets held in a trust. Assets in the deceased person's name alone, with no beneficiary designation, usually need to go through probate.",
+    "sources": []
+  },
+  {
+    "category": "estate",
+    "question": "How do I make a power of attorney in Florida?",
+    "aliases": [],
+    "answer": "A Florida power of attorney must be signed by you in front of two witnesses and a notary. It takes effect as soon as it is signed; Florida no longer allows new powers of attorney that only take effect upon a future incapacity. Certain powers, such as making gifts or creating or changing trusts, only apply if you separately sign or initial next to each one. For medical decisions, Florida uses a separate document called a designation of health care surrogate.",
+    "sources": [
+      "Fla. Stat. § 709.2105",
+      "Fla. Stat. § 709.2108",
+      "Fla. Stat. § 709.2202",
+      "Fla. Stat. ch. 765"
+    ]
+  },
+  {
+    "category": "estate",
+    "question": "What is the Florida homestead exemption?",
+    "aliases": [],
+    "answer": "If you own a home in Florida and it is your permanent residence on January 1, you can apply with your county property appraiser by March 1 for a homestead exemption of up to $50,000 of assessed value (the second $25,000 does not apply to school taxes). Homestead property also gets the Save Our Homes cap, which limits yearly increases in assessed value to 3% or the rate of inflation, whichever is lower. Separately, Florida's constitution protects a homestead from most creditors and restricts how it can be left in a will when there is a surviving spouse or minor child.",
+    "sources": [
+      "Fla. Const. art. VII, § 6",
+      "Fla. Const. art. X, § 4",
+      "Fla. Stat. § 196.031"
+    ]
+  },
+  {
+    "category": "landlord_tenant",
+    "question": "When does my landlord have to return my security deposit in Florida?",
+    "aliases": [],
+    "answer": "If the landlord isn't keeping any of the deposit, they must return it within 15 days after you move out. If they intend to make deductions, they must send you a written notice by certified mail within 30 days explaining what they're keeping and why. You then have 15 days from receiving it to object in writing. If the landlord misses the 30-day notice deadline, they lose the right to make a claim against the deposit. Give your landlord your forwarding address in writing, and know that normal wear and tear cannot be deducted.",
+    "sources": [
+      "Fla. Stat. § 83.49"
+    ]
+  },
+  {
+    "category": "landlord_tenant",
+    "question": "How does eviction for unpaid rent work in Florida?",
+    "aliases": [
+      "My landlord gave me an eviction notice",
+      "I am behind on rent and my landlord wants me out",
+      "How long does an eviction take in Florida?"
+    ],
+    "answer": "The landlord must first give you a 3-day notice to pay the rent or move out; the 3 days don't count the day of service, weekends, or court holidays. If the rent isn't paid, the landlord can file an eviction lawsuit in county court. Once you are served, you have 5 days, excluding weekends and court holidays, to respond. To raise any defense other than having already paid, you must deposit the rent the landlord claims is owed into the court registry, or the landlord can win by default. If the landlord wins, the sheriff posts a writ of possession giving you 24 hours to leave.",
+    "sources": [
+      "Fla. Stat. § 83.56",
+      "Fla. Stat. § 83.60",
+      "Fla. Stat. § 83.62"
+    ]
+  },
+  {
+    "category": "landlord_tenant",
+    "question": "Can my landlord change the locks or shut off my utilities to make me leave?",
+    "aliases": [],
+    "answer": "No. In Florida, a landlord can only remove a tenant through a court eviction. It is illegal for a landlord to change the locks, shut off utilities, remove doors or appliances, or remove your belongings to force you out. A tenant can sue for actual damages or three months' rent, whichever is greater, plus court costs and attorney's fees.",
+    "sources": [
+      "Fla. Stat. § 83.67"
+    ]
+  },
+  {
+    "category": "landlord_tenant",
+    "question": "My landlord won't make repairs. What can I do?",
+    "aliases": [
+      "Can I withhold rent if my landlord refuses to fix something?",
+      "My apartment has mold and the landlord will not fix it"
+    ],
+    "answer": "Florida landlords must comply with building, housing, and health codes and keep structural parts and plumbing in working order. In apartment buildings, they must also provide extermination, locks and keys, garbage removal, heat, and running and hot water, unless the lease says otherwise for a single-family home or duplex. If the landlord fails to do so, you can deliver a written 7-day notice describing the problem. If it isn't fixed, you may be able to end the lease or withhold rent. Withholding rent without following the notice process exactly can get you evicted, so talk to an attorney first.",
+    "sources": [
+      "Fla. Stat. § 83.51",
+      "Fla. Stat. § 83.56(1)",
+      "Fla. Stat. § 83.60"
+    ]
+  },
+  {
+    "category": "landlord_tenant",
+    "question": "Can my landlord enter my apartment without notice?",
+    "aliases": [],
+    "answer": "For repairs, a Florida landlord must give at least 24 hours' notice and enter between 7:30 a.m. and 8:00 p.m. A landlord may enter at any time without notice in an emergency, with your consent, or if you have been absent for longer than half a rental period. A landlord may not use the right of entry to harass you.",
+    "sources": [
+      "Fla. Stat. § 83.53"
+    ]
+  },
+  {
+    "category": "landlord_tenant",
+    "question": "Can I break my lease early in Florida?",
+    "aliases": [],
+    "answer": "If you move out early, you can generally be held responsible for rent until the lease ends or the unit is re-rented, whichever comes first, unless your lease has an early termination clause. Some Florida leases offer an early termination option that lets you leave by giving up to 60 days' notice and paying a fee of up to two months' rent. Active-duty servicemembers can end a lease with 30 days' written notice when they receive qualifying military orders.",
+    "sources": [
+      "Fla. Stat. § 83.595",
+      "Fla. Stat. § 83.682"
+    ]
+  },
+  {
+    "category": "employment",
+    "question": "Can my employer fire me for no reason in Florida?",
+    "aliases": [
+      "Was I wrongfully terminated?",
+      "Can I be fired for reporting something illegal at work?"
+    ],
+    "answer": "Generally yes. Florida is an at-will employment state, so an employer can fire you for any reason or no reason, unless you have a contract that says otherwise. But it is illegal to fire someone for a discriminatory reason (such as race, sex, pregnancy, religion, national origin, age, disability, or marital status), in retaliation for reporting or refusing to take part in a legal violation, for filing a workers' compensation claim, or for serving on a jury or in the military.",
+    "sources": [
+      "Fla. Stat. § 760.10",
+      "Fla. Stat. § 448.102",
+      "Fla. Stat. § 440.205",
+      "Fla. Stat. § 40.271"
+    ]
+  },
+  {
+    "category": "employment",
+    "question": "What is the minimum wage in Florida?",
+    "aliases": [],
+    "answer": "Florida's minimum wage is $15.00 per hour as of September 30, 2026. For tipped employees, the minimum cash wage is $11.98 per hour, as long as tips bring total pay to at least $15.00. Starting September 30, 2027, the rate will be adjusted every year for inflation.",
+    "sources": [
+      "Fla. Const. art. X, § 24",
+      "Fla. Stat. § 448.110"
+    ]
+  },
+  {
+    "category": "employment",
+    "question": "Am I entitled to overtime pay in Florida?",
+    "aliases": [
+      "My employer is not paying me time and a half"
+    ],
+    "answer": "Florida has no separate state overtime law, so overtime is governed by the federal Fair Labor Standards Act. Non-exempt employees must be paid 1.5 times their regular rate for hours worked over 40 in a workweek. Being paid a salary does not automatically make you exempt; exemption depends on your salary level and actual job duties.",
+    "sources": [
+      "29 U.S.C. § 207"
+    ]
+  },
+  {
+    "category": "employment",
+    "question": "When do I get my final paycheck after leaving a job in Florida?",
+    "aliases": [],
+    "answer": "Florida has no law setting a deadline for a final paycheck, so it is usually paid on the next regular payday. Whether unused vacation is paid out depends on your employer's written policy or your contract. If wages are not paid, you can bring a claim, and Florida law allows a court to award attorney's fees to an employee who wins an unpaid wage case.",
+    "sources": [
+      "Fla. Stat. § 448.08"
+    ]
+  },
+  {
+    "category": "employment",
+    "question": "How long do I have to file a workplace discrimination complaint in Florida?",
+    "aliases": [],
+    "answer": "Under the Florida Civil Rights Act, you must file a complaint with the Florida Commission on Human Relations within 365 days of the discriminatory act. A charge with the federal EEOC must generally be filed within 300 days in Florida, and filing with one agency can count for both. After the agency process, there is a separate, shorter deadline to file a lawsuit, which was revised by a 2026 amendment, so don't wait to get advice.",
+    "sources": [
+      "Fla. Stat. § 760.11",
+      "42 U.S.C. § 2000e-5(e)"
+    ]
+  },
+  {
+    "category": "employment",
+    "question": "Is my non-compete agreement enforceable in Florida?",
+    "aliases": [],
+    "answer": "Florida enforces non-competes more readily than most states. A non-compete is generally enforceable if it is in writing, signed, protects a legitimate business interest such as trade secrets or customer relationships, and is reasonable in time, area, and line of business. For employees, a restriction of six months or less is presumed reasonable and more than two years is presumed unreasonable. Since 2025, the CHOICE Act allows non-competes of up to four years for covered employees who earn more than twice the annual mean wage in their county, and courts must enforce them with an injunction. It excludes health care practitioners.",
+    "sources": [
+      "Fla. Stat. § 542.335",
+      "CHOICE Act (2025)"
+    ]
+  },
+  {
+    "category": "employment",
+    "question": "I got hurt at work in Florida. What should I do?",
+    "aliases": [],
+    "answer": "Report the injury to your employer as soon as possible and no later than 30 days after the accident or after a doctor tells you it is work-related, or your claim may be denied. Your employer must report it to its insurance carrier within 7 days. Workers' compensation covers authorized medical care and, after the first 7 days of disability, wage benefits usually equal to two-thirds of your average weekly wage. If benefits are denied, you generally have two years from the injury to file a petition for benefits. It is illegal to fire you for filing a claim.",
+    "sources": [
+      "Fla. Stat. § 440.185",
+      "Fla. Stat. § 440.12",
+      "Fla. Stat. § 440.19",
+      "Fla. Stat. § 440.205"
+    ]
+  },
+  {
+    "category": "personal_injury",
+    "question": "How long do I have to file a personal injury lawsuit in Florida?",
+    "aliases": [
+      "What is the statute of limitations for an injury claim in Florida?"
+    ],
+    "answer": "For most negligence claims, such as car accidents and slip-and-falls, the deadline is two years from the date of the injury if it happened on or after March 24, 2023; it was four years before that date. Medical malpractice claims generally must be filed within two years of when the injury was or should have been discovered, and no more than four years after the incident, with some exceptions. Wrongful death claims have a two-year deadline. Claims against government agencies have special notice requirements, so act quickly.",
+    "sources": [
+      "Fla. Stat. § 95.11",
+      "HB 837 (2023)",
+      "Fla. Stat. § 768.28"
+    ]
+  },
+  {
+    "category": "personal_injury",
+    "question": "I was in a car accident in Florida. Who pays my medical bills?",
+    "aliases": [],
+    "answer": "Florida is a no-fault state, so your own personal injury protection (PIP) coverage pays first, regardless of who caused the accident. PIP covers 80% of reasonable medical expenses and 60% of lost income, up to $10,000. You must get initial medical treatment within 14 days of the accident to use PIP, and if a doctor does not find an emergency medical condition, medical benefits are limited to $2,500. To sue the at-fault driver for pain and suffering, your injury must meet a threshold such as a permanent injury or significant scarring. Proposals to repeal PIP failed again in the 2026 legislative session.",
+    "sources": [
+      "Fla. Stat. § 627.736",
+      "Fla. Stat. § 627.737"
+    ]
+  },
+  {
+    "category": "personal_injury",
+    "question": "Can I still recover damages if the accident was partly my fault?",
+    "aliases": [],
+    "answer": "Yes, as long as you were not more than 50% at fault. For most negligence cases arising on or after March 24, 2023, Florida uses modified comparative negligence: your damages are reduced by your percentage of fault, and if you are found more than 50% at fault, you recover nothing. Medical malpractice cases still use the older pure comparative negligence rule.",
+    "sources": [
+      "Fla. Stat. § 768.81",
+      "HB 837 (2023)"
+    ]
+  },
+  {
+    "category": "personal_injury",
+    "question": "I slipped and fell in a store. Do I have a case?",
+    "aliases": [],
+    "answer": "If you slipped on something like a spill in a business, Florida law requires you to prove the business knew or should have known about the hazard and failed to fix it, for example because it was there long enough that employees should have noticed. Report the fall to the manager, take photos of the hazard, get witness names, and see a doctor promptly. The general two-year negligence deadline applies.",
+    "sources": [
+      "Fla. Stat. § 768.0755"
+    ]
+  },
+  {
+    "category": "personal_injury",
+    "question": "How does a medical malpractice claim work in Florida?",
+    "aliases": [],
+    "answer": "Before filing a lawsuit, you must complete a presuit process: an investigation, a corroborating opinion from a qualified medical expert, and a written notice of intent to the health care provider, followed by a 90-day period for the provider to investigate. The claim generally must be brought within two years of when the injury was or should have been discovered. These cases are complex and expensive, so an early review is important.",
+    "sources": [
+      "Fla. Stat. § 766.106",
+      "Fla. Stat. § 766.203",
+      "Fla. Stat. § 95.11"
+    ]
+  },
+  {
+    "category": "personal_injury",
+    "question": "Who can file a wrongful death lawsuit in Florida?",
+    "aliases": [],
+    "answer": "In Florida, a wrongful death lawsuit is brought by the personal representative of the deceased person's estate, on behalf of the estate and the survivors, such as the spouse, children, and parents. The deadline is generally two years from the date of death.",
+    "sources": [
+      "Fla. Stat. § 768.20",
+      "Fla. Stat. § 768.21",
+      "Fla. Stat. § 95.11"
+    ]
+  },
+  {
+    "category": "criminal",
+    "question": "What should I do if I or a family member is arrested in Florida?",
+    "aliases": [
+      "How does bail work in Florida?",
+      "My husband is in jail. How do I get him out?"
+    ],
+    "answer": "Stay calm, say you want to remain silent and want a lawyer, and do not answer questions about the case without one. Do not consent to searches, and don't discuss the case on jail phones, because those calls are recorded. A person who is arrested sees a judge at a first appearance within 24 hours, where bond and release conditions are set and a public defender can be appointed. Call a criminal defense attorney as soon as possible.",
+    "sources": [
+      "Fla. R. Crim. P. 3.130"
+    ]
+  },
+  {
+    "category": "criminal",
+    "question": "I was arrested for DUI in Florida. What happens to my driver's license?",
+    "aliases": [],
+    "answer": "Your license is suspended administratively at the time of arrest, separately from the criminal case. You have only 10 days from the arrest to request a formal or informal review hearing with the Department of Highway Safety and Motor Vehicles, or to apply for a waiver in some first-offense cases. If you miss that deadline, the suspension takes effect automatically: generally 6 months for a first DUI with a breath or blood result over the limit, and 1 year for a first refusal to take the test. Contact an attorney immediately.",
+    "sources": [
+      "Fla. Stat. § 322.2615",
+      "Fla. Stat. § 316.1932"
+    ]
+  },
+  {
+    "category": "criminal",
+    "question": "Can I seal or expunge my criminal record in Florida?",
+    "aliases": [
+      "How do I get a charge removed from my record?"
+    ],
+    "answer": "Possibly. Expungement may be available if the charges were dropped, dismissed, or you were acquitted. Sealing may be available if adjudication of guilt was withheld (meaning you were not formally convicted). In general, you cannot have been convicted of any crime before, certain serious offenses are never eligible, and you can usually seal or expunge only once. The process starts with an application to the Florida Department of Law Enforcement for a certificate of eligibility, followed by a petition to the court.",
+    "sources": [
+      "Fla. Stat. § 943.0585",
+      "Fla. Stat. § 943.059"
+    ]
+  },
+  {
+    "category": "criminal",
+    "question": "What are my options after getting a traffic ticket in Florida?",
+    "aliases": [],
+    "answer": "For most non-criminal moving violations, you have 30 days to act. You can pay the fine, which adds points to your license. You can elect to take a basic driver improvement course to avoid points, which you can do once every 12 months and up to five times in your lifetime. Or you can contest the ticket in court. Ignoring a ticket leads to a license suspension. Getting 12 points within 12 months results in a 30-day suspension.",
+    "sources": [
+      "Fla. Stat. § 318.14",
+      "Fla. Stat. § 322.27"
+    ]
+  },
+  {
+    "category": "civil",
+    "question": "How does small claims court work in Florida?",
+    "aliases": [
+      "Someone owes me money. How do I sue them?",
+      "How do I take someone to court for a small amount of money?",
+      "A company took my money and did not deliver what I paid for"
+    ],
+    "answer": "Small claims court in Florida handles disputes worth $8,000 or less, not counting costs, interest, and attorney's fees. You file in the county court where the defendant lives or where the events happened, and the filing fee depends on the amount claimed. The first court date is usually a pretrial conference, where many cases are sent to mediation. You can represent yourself, but you are also allowed to have a lawyer, and a business can be represented by an authorized employee.",
+    "sources": [
+      "Fla. Sm. Cl. R. 7.010",
+      "Fla. Sm. Cl. R. 7.050",
+      "Fla. Sm. Cl. R. 7.090"
+    ]
+  },
+  {
+    "category": "civil",
+    "question": "How long do I have to sue for breach of contract in Florida?",
+    "aliases": [
+      "Someone broke our agreement. Can I sue?"
+    ],
+    "answer": "In Florida, a lawsuit for breach of a written contract generally must be filed within five years, and for an oral contract within four years, usually counted from the date of the breach.",
+    "sources": [
+      "Fla. Stat. § 95.11"
+    ]
+  },
+  {
+    "category": "civil",
+    "question": "A debt collector keeps calling me. What are my rights in Florida?",
+    "aliases": [],
+    "answer": "The Florida Consumer Collection Practices Act protects you from harassment, threats, and calls between 9 p.m. and 8 a.m. without your permission, and from collectors contacting your employer or family about the debt before a judgment in most situations. Unlike the federal law, it also applies to original creditors, not just collection agencies. You can recover actual damages, up to $1,000 in additional statutory damages, and attorney's fees. Keep a log of calls and save all letters and voicemails.",
+    "sources": [
+      "Fla. Stat. § 559.72",
+      "Fla. Stat. § 559.77",
+      "15 U.S.C. § 1692"
+    ]
+  },
+  {
+    "category": "business",
+    "question": "How do I form an LLC in Florida?",
+    "aliases": [
+      "How do I register a company in Florida?"
+    ],
+    "answer": "File Articles of Organization with the Florida Division of Corporations at sunbiz.org; the state fee is about $125. You must name a registered agent with a Florida street address. We also recommend a written operating agreement, an EIN from the IRS, and a separate business bank account to protect your personal liability. Every Florida LLC must file an annual report between January 1 and May 1 each year, and there is a $400 late fee if you miss the deadline.",
+    "sources": [
+      "Fla. Stat. ch. 605"
+    ]
+  },
+  {
+    "category": "real_estate",
+    "question": "What does a seller have to disclose when selling a home in Florida?",
+    "aliases": [],
+    "answer": "Florida law requires a seller of residential property to disclose known facts that materially affect the property's value and are not readily observable to the buyer, such as roof leaks, past flooding, or structural problems. A seller who hides such defects can be liable to the buyer. Most sellers complete a written disclosure form, and buyers should still get their own inspection.",
+    "sources": [
+      "Johnson v. Davis, 480 So. 2d 625 (Fla. 1985)"
+    ]
+  }
+]

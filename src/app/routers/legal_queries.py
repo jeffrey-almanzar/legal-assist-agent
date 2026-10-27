@@ -1,0 +1,33 @@
+# Defines the routes for handling legal queries, integrating with Claude.
+
+# legal_queries.py
+from uuid import UUID
+
+from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel, Field
+
+from app.services import QueryRefusedError, process_query
+
+router = APIRouter()
+
+DISCLAIMER = 'This is general legal information, not legal advice.'
+
+
+class QueryRequest(BaseModel):
+    query: str = Field(min_length=1, max_length=10_000)
+
+
+class QueryResponse(BaseModel):
+    # Pass this to POST /feedback to rate the answer.
+    query_id: UUID
+    response: str
+    disclaimer: str = DISCLAIMER
+
+
+@router.post('/query', response_model=QueryResponse)
+async def handle_query(request: QueryRequest):
+    try:
+        result = await process_query(request.query)
+    except QueryRefusedError:
+        raise HTTPException(status_code=422, detail='This query could not be answered.')
+    return QueryResponse(query_id=result.query_id, response=result.response)
