@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ask Bayvale Legal</title>
+<title>Ask Jeff Legal Group</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  /* Palette: Tampa Bay water and mangrove ink, with one "citation amber" reserved for § marks. */
+  /* Palette: Biscayne Bay water and mangrove ink, with one "citation amber" reserved for § marks. */
   :root {
     --bay-ink: #0e3b43;
     --text: #13262b;
@@ -150,8 +150,8 @@
 <body>
 <div class="frame">
   <header>
-    <span class="firm">Bayvale Legal Group</span>
-    <span class="contact">Tampa, Florida · <a href="tel:+18135550142">(813) 555-0142</a></span>
+    <span class="firm">Jeff Legal Group</span>
+    <span class="contact">Miami, Florida · <a href="tel:+13055550142">(305) 555-0142</a></span>
   </header>
 
   <section class="intro" id="intro">
@@ -286,7 +286,7 @@
         // A string detail means the assistant declined; a list means the request was invalid.
         const declined = res.status === 422 && typeof data.detail === 'string';
         throw new Error(declined
-          ? 'This question can’t be answered here. Call (813) 555-0142 to speak with an attorney.'
+          ? 'This question can’t be answered here. Call (305) 555-0142 to speak with an attorney.'
           : 'Something went wrong getting an answer. Try again in a moment.');
       }
       answer.className = 'answer';

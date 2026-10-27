@@ -132,7 +132,7 @@
     "expected": "What types of cases does your firm handle?"
   },
   {
-    "query": "can you recommend a good restaurant in Tampa",
+    "query": "can you recommend a good restaurant in Miami",
     "expected": null
   },
   {

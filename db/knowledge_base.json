@@ -6,7 +6,7 @@
       "How do I make an appointment?",
       "Can I meet with a lawyer by video?"
     ],
-    "answer": "Call our Tampa office at (813) 555-0142, Monday to Friday from 8:30 a.m. to 5:30 p.m., or book online at bayvale-legal.example.com/book. Consultations are available in person at our downtown Tampa office or by video call.",
+    "answer": "Call our Miami office at (305) 555-0142, Monday to Friday from 8:30 a.m. to 5:30 p.m., or book online at jefflegal.example.com/book. Consultations are available in person at our downtown Miami office or by video call.",
     "sources": []
   },
   {
@@ -61,14 +61,17 @@
       "Do you handle bankruptcy or tax cases?",
       "What kind of lawyer do I need?"
     ],
-    "answer": "Bayvale Legal Group handles family law, estate planning and probate, landlord-tenant disputes, employment law, personal injury, criminal defense and traffic, small claims and consumer matters, and small business formation. We do not handle immigration, bankruptcy, tax, or patent matters. For those, we recommend The Florida Bar Lawyer Referral Service at 1-800-342-8011.",
+    "answer": "Jeff Legal Group handles family law, estate planning and probate, landlord-tenant disputes, employment law, personal injury, criminal defense and traffic, small claims and consumer matters, and small business formation. We do not handle immigration, bankruptcy, tax, or patent matters. For those, we recommend The Florida Bar Lawyer Referral Service at 1-800-342-8011.",
     "sources": []
   },
   {
     "category": "firm",
-    "question": "Do you handle cases outside Tampa?",
-    "aliases": [],
-    "answer": "Our attorneys regularly appear in Hillsborough, Pinellas, Pasco, and Polk counties, and we can advise on Florida law statewide, often by video. Our attorneys are licensed in Florida only, so we cannot represent you in a case in another state.",
+    "question": "Which areas of Florida do you serve?",
+    "aliases": [
+      "Do you take cases in other Florida counties?",
+      "Can you represent me if I live in Broward or Palm Beach?"
+    ],
+    "answer": "Our attorneys regularly appear in Miami-Dade, Broward, Palm Beach, and Monroe counties, and we can advise on Florida law statewide, often by video. Our attorneys are licensed in Florida only, so we cannot represent you in a case in another state.",
     "sources": []
   },
   {
