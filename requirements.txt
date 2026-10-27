@@ -1,11 +1,8 @@
+# Runtime dependencies for the API (what the Docker image installs).
 anthropic
 fastapi
 uvicorn[standard]
 pydantic>=2
-aws-cdk-lib>=2
-constructs>=10
-pytest
-httpx
 fastembed
 asyncpg
 pgvector

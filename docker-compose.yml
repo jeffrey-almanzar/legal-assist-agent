@@ -14,6 +14,19 @@ services:
       test: ['CMD-SHELL', 'pg_isready -U legal']
       interval: 5s
       retries: 10
+  app:
+    build: .
+    ports:
+      - '8000:8000'
+    environment:
+      - DATABASE_URL=postgresql://legal:legal@postgres:5432/legal
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    # Locally, apply the schema and load the knowledge base before serving. Both are safe
+    # to re-run. In production, run them as a one-off deploy step instead.
+    command: sh -c "python -m scripts.init_db && python -m scripts.seed && uvicorn app.main:app --host 0.0.0.0 --port 8000"
   localstack:
     image: localstack/localstack
     ports:

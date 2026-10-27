@@ -74,7 +74,7 @@ def test_build_user_message_with_references():
 
 def test_process_query_sends_references_to_claude(fake_claude):
     result = asyncio.run(services.process_query('Is the consultation free?'))
-    assert result == services.QueryResult(query_id=QUERY_ID, response='It is free.')
+    assert result == services.QueryResult(query_id=QUERY_ID, response='It is free.', references=[REFERENCE])
     sent = fake_claude.calls[0]['messages'][0]['content']
     assert REFERENCE.answer in sent
 

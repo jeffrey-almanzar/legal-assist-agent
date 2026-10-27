@@ -2,6 +2,7 @@
 
 # embeddings.py
 import asyncio
+import os
 
 import numpy as np
 from fastembed import TextEmbedding
@@ -16,7 +17,8 @@ def _get_model() -> TextEmbedding:
     # Loaded lazily: the first call downloads the model (~70MB) and caches it.
     global _model
     if _model is None:
-        _model = TextEmbedding(EMBEDDING_MODEL)
+        # FASTEMBED_CACHE_PATH lets the Docker image bake the model in at build time.
+        _model = TextEmbedding(EMBEDDING_MODEL, cache_dir=os.environ.get('FASTEMBED_CACHE_PATH'))
     return _model
 
 

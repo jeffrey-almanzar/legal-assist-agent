@@ -17,10 +17,17 @@ class QueryRequest(BaseModel):
     query: str = Field(min_length=1, max_length=10_000)
 
 
+class Reference(BaseModel):
+    question: str
+    sources: list[str]
+
+
 class QueryResponse(BaseModel):
     # Pass this to POST /feedback to rate the answer.
     query_id: UUID
     response: str
+    # Firm-approved knowledge base entries the answer was based on.
+    references: list[Reference] = []
     disclaimer: str = DISCLAIMER
 
 
@@ -30,4 +37,8 @@ async def handle_query(request: QueryRequest):
         result = await process_query(request.query)
     except QueryRefusedError:
         raise HTTPException(status_code=422, detail='This query could not be answered.')
-    return QueryResponse(query_id=result.query_id, response=result.response)
+    return QueryResponse(
+        query_id=result.query_id,
+        response=result.response,
+        references=[Reference(question=r.question, sources=r.sources) for r in result.references],
+    )

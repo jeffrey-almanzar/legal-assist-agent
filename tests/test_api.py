@@ -11,16 +11,30 @@ client = TestClient(app)
 
 QUERY_ID = uuid4()
 
+REFERENCE = db.KnowledgeEntry(
+    category='civil',
+    question='How does small claims court work in Florida?',
+    answer='Up to $8,000.',
+    sources=['Fla. Sm. Cl. R. 7.010'],
+)
 
-def test_api_root():
+
+def test_health():
+    response = client.get('/health')
+    assert response.status_code == 200
+    assert response.json() == {'status': 'ok'}
+
+
+def test_chat_page():
     response = client.get('/')
     assert response.status_code == 200
-    assert response.json() == {'message': 'Welcome to the Legal Assistance API'}
+    assert 'text/html' in response.headers['content-type']
+    assert 'Ask a question about Florida law.' in response.text
 
 
 def test_query_returns_answer(monkeypatch):
     async def fake_process_query(query: str) -> QueryResult:
-        return QueryResult(query_id=QUERY_ID, response=f'Answer to: {query}')
+        return QueryResult(query_id=QUERY_ID, response=f'Answer to: {query}', references=[REFERENCE])
 
     monkeypatch.setattr(legal_queries, 'process_query', fake_process_query)
     response = client.post('/query', json={'query': 'What is the process for divorce?'})
@@ -28,6 +42,9 @@ def test_query_returns_answer(monkeypatch):
     assert response.json()['query_id'] == str(QUERY_ID)
     assert response.json()['response'] == 'Answer to: What is the process for divorce?'
     assert response.json()['disclaimer'] == legal_queries.DISCLAIMER
+    assert response.json()['references'] == [
+        {'question': REFERENCE.question, 'sources': REFERENCE.sources}
+    ]
 
 
 def test_query_refused(monkeypatch):

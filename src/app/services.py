@@ -2,7 +2,7 @@
 
 # services.py
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from uuid import UUID
 
 from anthropic import AsyncAnthropic
@@ -34,6 +34,7 @@ client = AsyncAnthropic()
 class QueryResult:
     query_id: UUID
     response: str
+    references: list[db.KnowledgeEntry] = field(default_factory=list)
 
 
 class QueryRefusedError(Exception):
@@ -60,6 +61,24 @@ def build_user_message(query: str, references: list[db.KnowledgeEntry]) -> str:
     return f'<references>\n{blocks}\n</references>\n\n<question>{query}</question>'
 
 
+async def generate_answer(query: str, references: list[db.KnowledgeEntry]):
+    """Calls Claude with the query and references; shared by the API and the answer eval."""
+    return await client.beta.messages.create(
+        model=MODEL,
+        max_tokens=16000,
+        system=SYSTEM_PROMPT,
+        output_config={'effort': 'medium'},
+        # On a safety refusal, the API retries on a fallback model in the same call.
+        betas=['server-side-fallback-2026-07-01'],
+        fallbacks='default',
+        messages=[{'role': 'user', 'content': build_user_message(query, references)}],
+    )
+
+
+def response_text(response) -> str:
+    return ''.join(block.text for block in response.content if block.type == 'text')
+
+
 async def process_query(query: str) -> QueryResult:
     start = time.perf_counter()
     references = await db.search_similar(await embed_query(query))
@@ -67,16 +86,7 @@ async def process_query(query: str) -> QueryResult:
 
     llm_start = time.perf_counter()
     try:
-        response = await client.beta.messages.create(
-            model=MODEL,
-            max_tokens=16000,
-            system=SYSTEM_PROMPT,
-            output_config={'effort': 'medium'},
-            # On a safety refusal, the API retries on a fallback model in the same call.
-            betas=['server-side-fallback-2026-07-01'],
-            fallbacks='default',
-            messages=[{'role': 'user', 'content': build_user_message(query, references)}],
-        )
+        response = await generate_answer(query, references)
     except Exception as exc:
         log.status, log.error = 'error', repr(exc)
         log.llm_ms, log.latency_ms = _ms_since(llm_start), _ms_since(start)
@@ -92,5 +102,5 @@ async def process_query(query: str) -> QueryResult:
         raise QueryRefusedError(await db.log_query(log))
 
     log.status = 'answered'
-    log.response = ''.join(block.text for block in response.content if block.type == 'text')
-    return QueryResult(query_id=await db.log_query(log), response=log.response)
+    log.response = response_text(response)
+    return QueryResult(query_id=await db.log_query(log), response=log.response, references=references)

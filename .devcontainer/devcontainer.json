@@ -5,5 +5,5 @@
   },
   "settings": {},
   "extensions": ["ms-python.python"],
-  "postCreateCommand": "pip install -r requirements.txt"
+  "postCreateCommand": "pip install -r requirements-dev.txt"
 }

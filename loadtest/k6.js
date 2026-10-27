@@ -11,7 +11,7 @@ export let options = {
 };
 
 export default function () {
-  let res = http.get('http://localhost:8000/');
+  let res = http.get('http://localhost:8000/health');
   check(res, {
     'status was 200': (r) => r.status === 200,
   });

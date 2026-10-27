@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ask Bayvale Legal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* Palette: Tampa Bay water and mangrove ink, with one "citation amber" reserved for § marks. */
+  :root {
+    --bay-ink: #0e3b43;
+    --text: #13262b;
+    --muted: #546d69;
+    --rule: #c9d8d3;
+    --page: #e9f0ed;
+    --surface: #fbfdfc;
+    --amber: #c98a12;
+    --amber-wash: #f6e7c4;
+    --danger: #9b2c2c;
+    --display: 'Libre Caslon Display', 'Hoefler Text', Georgia, serif;
+    --body: 'Public Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bay-ink: #9fd0cf;
+      --text: #e2ece9;
+      --muted: #93aca8;
+      --rule: #29444a;
+      --page: #0b1f23;
+      --surface: #11282d;
+      --amber: #e8b44a;
+      --amber-wash: #3a2f17;
+      --danger: #f0a0a0;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--text);
+    font: 400 17px/1.6 var(--body);
+  }
+  :focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+  .frame { max-width: 980px; margin: 0 auto; padding: 40px 24px 220px; }
+
+  header { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .firm { font: 400 15px var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--bay-ink); }
+  .contact { font-size: 14px; color: var(--muted); }
+  .contact a { color: inherit; }
+
+  .intro { margin: 72px 0 40px; max-width: 640px; }
+  .intro h1 {
+    margin: 0 0 16px;
+    font: 400 clamp(40px, 7vw, 64px)/1.02 var(--display);
+    color: var(--bay-ink);
+  }
+  .intro p { margin: 0; color: var(--muted); }
+
+  .examples { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; padding: 0; list-style: none; }
+  .examples button {
+    font: 400 15px var(--body); color: var(--text);
+    background: var(--surface); border: 1px solid var(--rule); border-radius: 999px;
+    padding: 8px 14px; cursor: pointer;
+  }
+  .examples button:hover { border-color: var(--bay-ink); }
+
+  /* Each exchange: the answer on the left, the law it rests on in the margin. */
+  .thread { display: grid; gap: 48px; margin-top: 48px; }
+  .intro:not([hidden]) + .thread { margin-top: 0; }
+  .exchange { display: grid; grid-template-columns: minmax(0, 1fr) 230px; column-gap: 32px; }
+  .question {
+    grid-column: 1 / -1; margin: 0 0 14px;
+    font: 600 19px/1.4 var(--body); color: var(--bay-ink);
+  }
+  .answer {
+    background: var(--surface); border: 1px solid var(--rule); border-radius: 6px;
+    padding: 22px 26px;
+  }
+  .answer > :first-child { margin-top: 0; }
+  .answer p, .answer ul, .answer ol { margin: 0 0 14px; }
+  .answer ul, .answer ol { padding-left: 22px; }
+  .answer li { margin-bottom: 6px; }
+  .answer code { font: 500 14px var(--mono); }
+  .answer.status { color: var(--muted); font-style: italic; }
+  .answer.error { color: var(--danger); }
+  .disclaimer { margin: 16px 0 0; padding-top: 12px; border-top: 1px solid var(--rule); font-size: 14px; color: var(--muted); }
+
+  .margin { padding-top: 4px; }
+  .margin h2 { margin: 0 0 10px; font: 600 12px var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .note { position: relative; padding-left: 26px; margin: 0 0 16px; font-size: 14px; line-height: 1.45; }
+  .note::before {
+    content: '§'; position: absolute; left: 0; top: -6px;
+    font: 400 26px/1 var(--display); color: var(--amber);
+  }
+  .note .cite { display: block; margin-top: 4px; font: 400 12.5px/1.5 var(--mono); color: var(--muted); }
+  .note.firm-note::before { content: '¶'; }
+
+  .feedback { grid-column: 1; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 12px; font-size: 14px; color: var(--muted); }
+  .feedback button, .composer button {
+    font: 600 14px var(--body); cursor: pointer; border-radius: 4px;
+  }
+  .feedback > button { background: none; border: 1px solid var(--rule); color: var(--text); padding: 4px 12px; }
+  .feedback > button:hover { border-color: var(--bay-ink); }
+  .feedback form { flex-basis: 100%; display: grid; gap: 8px; margin-top: 4px; }
+  .feedback textarea { font: 400 15px var(--body); color: var(--text); background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: 8px 10px; resize: vertical; min-height: 60px; }
+  .feedback form button { justify-self: start; background: var(--bay-ink); color: var(--surface); border: 0; padding: 6px 14px; }
+
+  /* The composer stays docked at the bottom, like a legal pad under the conversation. */
+  .composer {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to bottom, transparent, var(--page) 28%);
+    padding: 32px 24px 20px;
+  }
+  .composer form { max-width: 932px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: end; }
+  .composer textarea {
+    font: 400 17px/1.5 var(--body); color: var(--text);
+    background: var(--surface); border: 1px solid var(--rule); border-radius: 6px;
+    padding: 14px 16px; resize: none; min-height: 56px; max-height: 200px;
+    border-bottom: 3px solid var(--amber-wash);
+  }
+  .composer textarea:focus { border-bottom-color: var(--amber); outline: none; }
+  .composer button { background: var(--bay-ink); color: var(--surface); border: 0; padding: 0 22px; height: 56px; font-size: 16px; }
+  .composer button:disabled { opacity: .55; cursor: wait; }
+  .composer .hint { max-width: 932px; margin: 8px auto 0; font-size: 13px; color: var(--muted); }
+
+  .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  @media (max-width: 720px) {
+    body { font-size: 16px; }
+    .frame { padding: 24px 16px 220px; }
+    .intro { margin: 40px 0 28px; }
+    .exchange { grid-template-columns: 1fr; }
+    .answer { padding: 18px; }
+    .margin { margin-top: 14px; }
+    .composer { padding: 24px 16px 14px; }
+    .composer button { padding: 0 16px; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .exchange { animation: rise .35s ease-out; }
+    @keyframes rise { from { opacity: 0; transform: translateY(6px); } }
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+  <header>
+    <span class="firm">Bayvale Legal Group</span>
+    <span class="contact">Tampa, Florida · <a href="tel:+18135550142">(813) 555-0142</a></span>
+  </header>
+
+  <section class="intro" id="intro">
+    <h1>Ask a question about Florida law.</h1>
+    <p>Get a plain-language answer based on information our attorneys have reviewed, with the statutes it relies on. This is general information, not legal advice.</p>
+    <ul class="examples" aria-label="Example questions">
+      <li><button type="button">My landlord kept my whole security deposit</button></li>
+      <li><button type="button">Is the first consultation free?</button></li>
+      <li><button type="button">I was arrested for DUI three days ago</button></li>
+      <li><button type="button">Will I have to pay alimony forever?</button></li>
+      <li><button type="button">¿Tienen abogados que hablen español?</button></li>
+    </ul>
+  </section>
+
+  <main class="thread" id="thread" aria-live="polite"></main>
+</div>
+
+<div class="composer">
+  <form id="ask">
+    <label for="query" class="visually-hidden">Your question</label>
+    <textarea id="query" rows="1" maxlength="10000" placeholder="Type your question" required></textarea>
+    <button type="submit" id="send">Ask</button>
+  </form>
+  <p class="hint">Each question is answered on its own. Please don't include names, case numbers, or other private details.</p>
+</div>
+
+<script>
+  const thread = document.getElementById('thread');
+  const form = document.getElementById('ask');
+  const input = document.getElementById('query');
+  const send = document.getElementById('send');
+
+  const escapeHtml = (s) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+  // Minimal Markdown for Claude's answers: paragraphs, lists, bold, italics, code.
+  // Text is escaped first, so the answer can never inject HTML.
+  function renderMarkdown(md) {
+    const inline = (s) => escapeHtml(s)
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/(^|[^*])\*([^*\s][^*]*?)\*/g, '$1<em>$2</em>')
+      .replace(/`([^`]+)`/g, '<code>$1</code>');
+    return md.trim().split(/\n{2,}/).map((block) => {
+      const lines = block.split('\n');
+      if (lines.every((l) => /^\s*[-*] /.test(l))) {
+        return '<ul>' + lines.map((l) => `<li>${inline(l.replace(/^\s*[-*] /, ''))}</li>`).join('') + '</ul>';
+      }
+      if (lines.every((l) => /^\s*\d+[.)] /.test(l))) {
+        return '<ol>' + lines.map((l) => `<li>${inline(l.replace(/^\s*\d+[.)] /, ''))}</li>`).join('') + '</ol>';
+      }
+      if (/^#{1,6} /.test(block)) return `<p><strong>${inline(block.replace(/^#{1,6} /, ''))}</strong></p>`;
+      return `<p>${lines.map(inline).join('<br>')}</p>`;
+    }).join('');
+  }
+
+  function el(tag, className, html) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (html !== undefined) node.innerHTML = html;
+    return node;
+  }
+
+  function renderMargin(references) {
+    const margin = el('aside', 'margin');
+    if (!references.length) return margin;
+    margin.append(el('h2', '', 'Firm answers consulted'));
+    for (const ref of references) {
+      const note = el('p', ref.sources.length ? 'note' : 'note firm-note', escapeHtml(ref.question));
+      if (ref.sources.length) note.append(el('span', 'cite', ref.sources.map(escapeHtml).join('<br>')));
+      margin.append(note);
+    }
+    return margin;
+  }
+
+  function renderFeedback(queryId) {
+    const box = el('div', 'feedback');
+    box.append(el('span', '', 'Was this helpful?'));
+    const yes = el('button', '', 'Yes');
+    const no = el('button', '', 'No');
+    yes.type = no.type = 'button';
+    box.append(yes, no);
+
+    const submit = async (rating, comment) => {
+      box.replaceChildren(el('span', '', 'Sending…'));
+      try {
+        const res = await fetch('/feedback', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query_id: queryId, rating, comment: comment || null }),
+        });
+        if (!res.ok) throw new Error(res.status);
+        box.replaceChildren(el('span', '', 'Feedback sent. Thank you.'));
+      } catch {
+        box.replaceChildren(el('span', '', 'Feedback couldn’t be sent. Try again later.'));
+      }
+    };
+
+    yes.addEventListener('click', () => submit('up'));
+    no.addEventListener('click', () => {
+      yes.remove(); no.remove();
+      const f = el('form');
+      const label = el('label', 'visually-hidden', 'What was wrong with this answer?');
+      const text = el('textarea');
+      text.id = label.htmlFor = `fb-${queryId}`;
+      text.placeholder = 'What was wrong or missing? (optional)';
+      text.maxLength = 2000;
+      const button = el('button', '', 'Send feedback');
+      button.type = 'submit';
+      f.append(label, text, button);
+      f.addEventListener('submit', (e) => { e.preventDefault(); submit('down', text.value.trim()); });
+      box.append(f);
+      text.focus();
+    });
+    return box;
+  }
+
+  async function ask(question) {
+    document.getElementById('intro').hidden = true;
+    const exchange = el('article', 'exchange');
+    exchange.append(el('p', 'question', escapeHtml(question)));
+    const answer = el('div', 'answer status', 'Checking the firm’s answers and writing a response…');
+    exchange.append(answer, el('aside', 'margin'));
+    thread.append(exchange);
+    exchange.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    send.disabled = true;
+    try {
+      const res = await fetch('/query', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: question }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        // A string detail means the assistant declined; a list means the request was invalid.
+        const declined = res.status === 422 && typeof data.detail === 'string';
+        throw new Error(declined
+          ? 'This question can’t be answered here. Call (813) 555-0142 to speak with an attorney.'
+          : 'Something went wrong getting an answer. Try again in a moment.');
+      }
+      answer.className = 'answer';
+      answer.innerHTML = renderMarkdown(data.response);
+      answer.append(el('p', 'disclaimer', escapeHtml(data.disclaimer)));
+      exchange.querySelector('.margin').replaceWith(renderMargin(data.references));
+      exchange.append(renderFeedback(data.query_id));
+    } catch (err) {
+      answer.className = 'answer error';
+      answer.textContent = err.message.startsWith('Something') || err.message.startsWith('This')
+        ? err.message : 'Couldn’t reach the server. Check your connection and try again.';
+    } finally {
+      send.disabled = false;
+      input.focus();
+    }
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const question = input.value.trim();
+    if (!question || send.disabled) return;
+    input.value = '';
+    input.style.height = '';
+    ask(question);
+  });
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); form.requestSubmit(); }
+  });
+  input.addEventListener('input', () => {
+    input.style.height = 'auto';
+    input.style.height = `${Math.min(input.scrollHeight, 200)}px`;
+  });
+  document.querySelectorAll('.examples button').forEach((b) =>
+    b.addEventListener('click', () => { if (!send.disabled) ask(b.textContent); }));
+</script>
+</body>
+</html>

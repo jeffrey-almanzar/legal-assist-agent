@@ -1,0 +1,6 @@
+# Everything for local development: the API, tests, and the CDK infrastructure.
+-r requirements.txt
+pytest
+httpx
+aws-cdk-lib>=2
+constructs>=10

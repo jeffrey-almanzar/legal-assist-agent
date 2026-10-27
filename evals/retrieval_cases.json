@@ -1,0 +1,162 @@
+[
+  {
+    "query": "is the first meeting free",
+    "expected": "How much does an initial consultation cost?"
+  },
+  {
+    "query": "can I talk to someone in spanish",
+    "expected": "Do you have attorneys who speak Spanish?"
+  },
+  {
+    "query": "do you do bankruptcy",
+    "expected": "What types of cases does your firm handle?"
+  },
+  {
+    "query": "how do you charge for a car accident case",
+    "expected": "How do your legal fees work?"
+  },
+  {
+    "query": "my wife wants a divorce, we just moved here from Georgia 2 months ago",
+    "expected": "What are the requirements to file for divorce in Florida?"
+  },
+  {
+    "query": "will I have to pay my ex alimony forever",
+    "expected": "How does alimony work in Florida?"
+  },
+  {
+    "query": "who gets the kids in a divorce",
+    "expected": "How is child custody decided in Florida?"
+  },
+  {
+    "query": "i want to move to orlando with my son but his dad says no",
+    "expected": "Can I move away with my child after a divorce in Florida?"
+  },
+  {
+    "query": "my boyfriend hit me, how do I get protection",
+    "expected": "How do I get a restraining order for domestic violence in Florida?"
+  },
+  {
+    "query": "my dad died with no will who gets his house",
+    "expected": "What happens if someone dies without a will in Florida?"
+  },
+  {
+    "query": "can I write my own will by hand",
+    "expected": "What makes a will valid in Florida?"
+  },
+  {
+    "query": "how long until we get money from my moms estate",
+    "expected": "How long does probate take in Florida?"
+  },
+  {
+    "query": "landlord kept my whole deposit",
+    "expected": "When does my landlord have to return my security deposit in Florida?"
+  },
+  {
+    "query": "I got a 3 day notice on my door",
+    "expected": "How does eviction for unpaid rent work in Florida?"
+  },
+  {
+    "query": "landlord turned off my water",
+    "expected": "Can my landlord change the locks or shut off my utilities to make me leave?"
+  },
+  {
+    "query": "AC has been broken for 2 weeks and landlord ignores me",
+    "expected": "My landlord won't make repairs. What can I do?"
+  },
+  {
+    "query": "I got fired after I complained about harassment",
+    "expected": "Can my employer fire me for no reason in Florida?"
+  },
+  {
+    "query": "how much is minimum wage",
+    "expected": "What is the minimum wage in Florida?"
+  },
+  {
+    "query": "my boss doesnt pay me extra for working 50 hours",
+    "expected": "Am I entitled to overtime pay in Florida?"
+  },
+  {
+    "query": "can my old job stop me from working for a competitor",
+    "expected": "Is my non-compete agreement enforceable in Florida?"
+  },
+  {
+    "query": "i hurt my back lifting boxes at work",
+    "expected": "I got hurt at work in Florida. What should I do?"
+  },
+  {
+    "query": "someone rear ended me, who pays the hospital",
+    "expected": "I was in a car accident in Florida. Who pays my medical bills?"
+  },
+  {
+    "query": "is it too late to sue for an accident from last year",
+    "expected": "How long do I have to file a personal injury lawsuit in Florida?"
+  },
+  {
+    "query": "I fell on a wet floor at publix",
+    "expected": "I slipped and fell in a store. Do I have a case?"
+  },
+  {
+    "query": "my son got arrested last night what do I do",
+    "expected": "What should I do if I or a family member is arrested in Florida?"
+  },
+  {
+    "query": "got a DUI, will I lose my license",
+    "expected": "I was arrested for DUI in Florida. What happens to my driver's license?"
+  },
+  {
+    "query": "can I clear an old arrest off my background check",
+    "expected": "Can I seal or expunge my criminal record in Florida?"
+  },
+  {
+    "query": "got a speeding ticket",
+    "expected": "What are my options after getting a traffic ticket in Florida?"
+  },
+  {
+    "query": "my contractor took $5000 and never did the work",
+    "expected": "How does small claims court work in Florida?"
+  },
+  {
+    "query": "collection agency calling me at work",
+    "expected": "A debt collector keeps calling me. What are my rights in Florida?"
+  },
+  {
+    "query": "how do I start a business",
+    "expected": "How do I form an LLC in Florida?"
+  },
+  {
+    "query": "What is the capital of France?",
+    "expected": null
+  },
+  {
+    "query": "how do I apply for a green card",
+    "expected": "What types of cases does your firm handle?"
+  },
+  {
+    "query": "can you recommend a good restaurant in Tampa",
+    "expected": null
+  },
+  {
+    "query": "what's the weather going to be in Miami this weekend",
+    "expected": null
+  },
+  {
+    "query": "write me a poem about the ocean",
+    "expected": null
+  },
+  {
+    "query": "how do I change the brake pads on my car",
+    "expected": null
+  },
+  {
+    "query": "which credit card has the best travel rewards",
+    "expected": null
+  },
+  {
+    "query": "who won the super bowl last year",
+    "expected": null
+  },
+  {
+    "query": "how many calories are in a banana",
+    "expected": null
+  }
+]

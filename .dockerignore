@@ -1,0 +1,13 @@
+.venv/
+.git/
+.claude/
+.devcontainer/
+**/__pycache__/
+.pytest_cache/
+cdk.out/
+.env
+tests/
+evals/
+loadtest/
+db/kb_candidates.json
+src/infra/
