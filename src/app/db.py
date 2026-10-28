@@ -4,6 +4,7 @@
 import json
 import os
 from dataclasses import dataclass, field
+from datetime import datetime
 from uuid import UUID
 
 import asyncpg
@@ -122,32 +123,90 @@ async def log_query(log: QueryLog) -> UUID:
     )
 
 
-async def add_feedback(query_id: UUID, rating: str, comment: str | None) -> int:
+async def add_feedback(
+    query_id: UUID, rating: str, comment: str | None, source: str = 'public', api_key_id: int | None = None
+) -> int:
     try:
         return await pool.fetchval(
-            'INSERT INTO feedback (query_id, rating, comment) VALUES ($1, $2, $3) RETURNING id',
-            query_id, rating, comment,
+            '''
+            INSERT INTO feedback (query_id, rating, comment, source, api_key_id)
+            VALUES ($1, $2, $3, $4, $5) RETURNING id
+            ''',
+            query_id, rating, comment, source, api_key_id,
         )
     except asyncpg.ForeignKeyViolationError:
         raise QueryNotFoundError(query_id) from None
 
 
-async def rated_queries(rating: str) -> list[asyncpg.Record]:
-    """Answered queries with at least one rating of `rating`, newest first, with their comments."""
+async def rated_queries(rating: str, sources: list[str]) -> list[asyncpg.Record]:
+    """Answered queries rated `rating` by any of `sources`, newest first, with comments and who rated."""
     return await pool.fetch(
         '''
         SELECT q.id, q.query, q.response, q.references_used, q.created_at,
-               array_remove(array_agg(f.comment ORDER BY f.created_at), NULL) AS comments
+               array_remove(array_agg(f.comment ORDER BY f.created_at), NULL) AS comments,
+               array_agg(DISTINCT f.source) AS sources
         FROM query_log q
         JOIN feedback f ON f.query_id = q.id
-        WHERE f.rating = $1 AND q.status = 'answered'
+        WHERE f.rating = $1 AND f.source = ANY($2::text[]) AND q.status = 'answered'
         GROUP BY q.id
         ORDER BY q.created_at DESC
         ''',
-        rating,
+        rating, sources,
     )
 
 
 async def known_phrasings() -> set[str]:
     rows = await pool.fetch('SELECT lower(text) AS text FROM knowledge_base_phrasings')
     return {row['text'] for row in rows}
+
+
+@dataclass
+class ApiKey:
+    id: int
+    name: str
+    role: str
+    hourly_limit: int | None
+
+
+async def find_api_key(key_hash: str) -> ApiKey | None:
+    row = await pool.fetchrow(
+        'SELECT id, name, role, hourly_limit FROM api_keys WHERE key_hash = $1 AND revoked_at IS NULL',
+        key_hash,
+    )
+    return ApiKey(**row) if row else None
+
+
+async def create_api_key(name: str, role: str, key_hash: str, hourly_limit: int | None) -> int:
+    return await pool.fetchval(
+        'INSERT INTO api_keys (name, role, key_hash, hourly_limit) VALUES ($1, $2, $3, $4) RETURNING id',
+        name, role, key_hash, hourly_limit,
+    )
+
+
+async def revoke_api_key(key_id: int) -> bool:
+    status = await pool.execute(
+        'UPDATE api_keys SET revoked_at = now() WHERE id = $1 AND revoked_at IS NULL', key_id
+    )
+    return status == 'UPDATE 1'
+
+
+async def list_api_keys() -> list[asyncpg.Record]:
+    return await pool.fetch('SELECT id, name, role, hourly_limit, created_at, revoked_at FROM api_keys ORDER BY id')
+
+
+async def count_request(identity: str, bucket: str) -> tuple[int, datetime]:
+    """Counts a request in the caller's current one-hour window; returns (count, window_start)."""
+    row = await pool.fetchrow(
+        '''
+        INSERT INTO rate_limits (identity, bucket, window_start, count)
+        VALUES ($1, $2, date_trunc('hour', now()), 1)
+        ON CONFLICT (identity, bucket, window_start) DO UPDATE SET count = rate_limits.count + 1
+        RETURNING count, window_start
+        ''',
+        identity, bucket,
+    )
+    return row['count'], row['window_start']
+
+
+async def delete_old_rate_limits() -> None:
+    await pool.execute("DELETE FROM rate_limits WHERE window_start < now() - interval '1 day'")

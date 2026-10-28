@@ -47,13 +47,45 @@ CREATE TABLE IF NOT EXISTS query_log (
 
 CREATE INDEX IF NOT EXISTS query_log_created_at_idx ON query_log (created_at);
 
--- Thumbs up/down on a logged answer, e.g. from an attorney reviewing responses.
+-- API keys for programmatic access. Only a SHA-256 hash of each key is stored; the key
+-- itself is shown once when created (see src/scripts/api_keys.py).
+CREATE TABLE IF NOT EXISTS api_keys (
+    id           BIGSERIAL PRIMARY KEY,
+    name         TEXT NOT NULL,
+    role         TEXT NOT NULL CHECK (role IN ('client', 'attorney')),
+    key_hash     TEXT NOT NULL UNIQUE,
+    -- Overrides the role's default /query limit (requests per hour) when set.
+    hourly_limit INTEGER,
+    created_at   TIMESTAMPTZ NOT NULL DEFAULT now(),
+    revoked_at   TIMESTAMPTZ
+);
+
+-- Fixed one-hour windows of request counts per caller and endpoint. Stored in Postgres so
+-- the limit holds across multiple app instances.
+CREATE TABLE IF NOT EXISTS rate_limits (
+    identity     TEXT NOT NULL,
+    bucket       TEXT NOT NULL,
+    window_start TIMESTAMPTZ NOT NULL,
+    count        INTEGER NOT NULL,
+    PRIMARY KEY (identity, bucket, window_start)
+);
+
+-- Thumbs up/down on a logged answer. `source` records who rated it: anyone using the public
+-- chat page, a client API key, or an attorney key. Only attorney ratings are promoted into
+-- knowledge base candidates.
 CREATE TABLE IF NOT EXISTS feedback (
     id         BIGSERIAL PRIMARY KEY,
     query_id   UUID NOT NULL REFERENCES query_log (id) ON DELETE CASCADE,
     rating     TEXT NOT NULL CHECK (rating IN ('up', 'down')),
     comment    TEXT,
+    source     TEXT NOT NULL DEFAULT 'public' CHECK (source IN ('public', 'client', 'attorney')),
+    api_key_id BIGINT REFERENCES api_keys (id),
     created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+
+-- Columns added after the first release, for databases created before them.
+ALTER TABLE feedback ADD COLUMN IF NOT EXISTS
+    source TEXT NOT NULL DEFAULT 'public' CHECK (source IN ('public', 'client', 'attorney'));
+ALTER TABLE feedback ADD COLUMN IF NOT EXISTS api_key_id BIGINT REFERENCES api_keys (id);
 
 CREATE INDEX IF NOT EXISTS feedback_query_id_idx ON feedback (query_id);

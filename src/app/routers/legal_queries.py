@@ -3,9 +3,11 @@
 # legal_queries.py
 from uuid import UUID
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
 
+from app import rate_limit
+from app.auth import Caller, get_caller
 from app.services import QueryRefusedError, process_query
 
 router = APIRouter()
@@ -32,7 +34,8 @@ class QueryResponse(BaseModel):
 
 
 @router.post('/query', response_model=QueryResponse)
-async def handle_query(request: QueryRequest):
+async def handle_query(request: QueryRequest, caller: Caller = Depends(get_caller)):
+    await rate_limit.enforce(caller, 'query')
     try:
         result = await process_query(request.query)
     except QueryRefusedError:

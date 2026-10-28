@@ -5,3 +5,4 @@ cdk.out/
 .env
 db/kb_candidates.json
 .DS_Store
+.cache/

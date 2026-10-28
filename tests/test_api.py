@@ -64,8 +64,8 @@ def test_query_rejects_empty_body():
 def test_feedback_is_saved(monkeypatch):
     saved = []
 
-    async def fake_add_feedback(query_id, rating, comment):
-        saved.append((query_id, rating, comment))
+    async def fake_add_feedback(query_id, rating, comment, source, api_key_id):
+        saved.append((query_id, rating, comment, source, api_key_id))
         return 7
 
     monkeypatch.setattr(db, 'add_feedback', fake_add_feedback)
@@ -74,11 +74,11 @@ def test_feedback_is_saved(monkeypatch):
     )
     assert response.status_code == 201
     assert response.json() == {'feedback_id': 7}
-    assert saved == [(QUERY_ID, 'down', 'Wrong deadline')]
+    assert saved == [(QUERY_ID, 'down', 'Wrong deadline', 'public', None)]
 
 
 def test_feedback_unknown_query(monkeypatch):
-    async def fake_add_feedback(query_id, rating, comment):
+    async def fake_add_feedback(query_id, rating, comment, source, api_key_id):
         raise db.QueryNotFoundError(query_id)
 
     monkeypatch.setattr(db, 'add_feedback', fake_add_feedback)

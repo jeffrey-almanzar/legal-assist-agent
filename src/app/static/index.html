@@ -266,6 +266,21 @@
     return box;
   }
 
+  // An error response from the API, as opposed to a network failure.
+  class ApiError extends Error {}
+
+  function errorMessage(res, data) {
+    if (res.status === 429) {
+      const minutes = Math.max(1, Math.ceil(Number(res.headers.get('Retry-After') || 3600) / 60));
+      return `You’ve reached the limit of questions for this hour. Try again in ${minutes} minute${minutes === 1 ? '' : 's'}, or call (305) 555-0142.`;
+    }
+    // A string detail means the assistant declined; a list means the request was invalid.
+    if (res.status === 422 && typeof data.detail === 'string') {
+      return 'This question can’t be answered here. Call (305) 555-0142 to speak with an attorney.';
+    }
+    return 'Something went wrong getting an answer. Try again in a moment.';
+  }
+
   async function ask(question) {
     document.getElementById('intro').hidden = true;
     const exchange = el('article', 'exchange');
@@ -282,13 +297,7 @@
         body: JSON.stringify({ query: question }),
       });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        // A string detail means the assistant declined; a list means the request was invalid.
-        const declined = res.status === 422 && typeof data.detail === 'string';
-        throw new Error(declined
-          ? 'This question can’t be answered here. Call (305) 555-0142 to speak with an attorney.'
-          : 'Something went wrong getting an answer. Try again in a moment.');
-      }
+      if (!res.ok) throw new ApiError(errorMessage(res, data));
       answer.className = 'answer';
       answer.innerHTML = renderMarkdown(data.response);
       answer.append(el('p', 'disclaimer', escapeHtml(data.disclaimer)));
@@ -296,7 +305,7 @@
       exchange.append(renderFeedback(data.query_id));
     } catch (err) {
       answer.className = 'answer error';
-      answer.textContent = err.message.startsWith('Something') || err.message.startsWith('This')
+      answer.textContent = err instanceof ApiError
         ? err.message : 'Couldn’t reach the server. Check your connection and try again.';
     } finally {
       send.disabled = false;

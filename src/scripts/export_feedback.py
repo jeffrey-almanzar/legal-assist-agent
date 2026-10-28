@@ -1,8 +1,10 @@
-# Turns attorney feedback into review material:
-# - Prints thumbs-down answers, with comments and the references used, to find what went wrong.
-# - Writes thumbs-up answers whose question isn't already in the knowledge base to a draft
-#   file in knowledge_base.json format. An attorney reviews each draft, fills in category and
-#   sources, moves it into db/knowledge_base.json, and runs scripts.seed.
+# Turns feedback into review material:
+# - Prints thumbs-down answers from anyone (public, client, or attorney), with who rated them,
+#   their comments, and the references used, to find what went wrong.
+# - Writes answers an attorney rated thumbs-up, whose question isn't already in the knowledge
+#   base, to a draft file in knowledge_base.json format. Public and client ratings are never
+#   promoted. An attorney reviews each draft, fills in category and sources, moves it into
+#   db/knowledge_base.json, and runs scripts.seed.
 # Usage (from src/): python -m scripts.export_feedback [output.json]
 
 # export_feedback.py
@@ -20,7 +22,7 @@ def print_down_report(rows) -> None:
     print(f'{len(rows)} answer(s) rated down\n')
     for row in rows:
         references = json.loads(row['references_used'])
-        print(f'[{row["created_at"]:%Y-%m-%d %H:%M}] {row["id"]}')
+        print(f'[{row["created_at"]:%Y-%m-%d %H:%M}] {row["id"]}  (rated by: {", ".join(sorted(row["sources"]))})')
         print(f'  Q: {row["query"]}')
         for comment in row['comments']:
             print(f'  Comment: {comment}')
@@ -55,8 +57,8 @@ def to_candidate(row) -> dict:
 async def main(output: Path) -> None:
     await db.connect()
     try:
-        down = await db.rated_queries('down')
-        up = await db.rated_queries('up')
+        down = await db.rated_queries('down', ['public', 'client', 'attorney'])
+        up = await db.rated_queries('up', ['attorney'])
         known = await db.known_phrasings()
     finally:
         await db.close()

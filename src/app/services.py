@@ -1,8 +1,10 @@
 # Service that answers legal queries with Claude, grounded in the firm's knowledge base.
 
 # services.py
+import os
 import time
 from dataclasses import dataclass, field
+from types import SimpleNamespace
 from uuid import UUID
 
 from anthropic import AsyncAnthropic
@@ -28,6 +30,11 @@ SYSTEM_PROMPT = (
 
 # Reads ANTHROPIC_API_KEY from the environment.
 client = AsyncAnthropic()
+
+# MOCK_LLM=1 replaces the Claude call with a canned answer, so load tests measure this
+# app's own stack (API, embedding, pgvector, logging) without paying for Claude calls.
+# Never enable it in production.
+MOCK_LLM = os.environ.get('MOCK_LLM') == '1'
 
 
 @dataclass
@@ -61,8 +68,19 @@ def build_user_message(query: str, references: list[db.KnowledgeEntry]) -> str:
     return f'<references>\n{blocks}\n</references>\n\n<question>{query}</question>'
 
 
+def _mock_response(references: list[db.KnowledgeEntry]):
+    text = 'Mock answer (MOCK_LLM=1). References: ' + ('; '.join(r.question for r in references) or 'none')
+    return SimpleNamespace(
+        model='mock', stop_reason='end_turn',
+        usage=SimpleNamespace(input_tokens=0, output_tokens=0),
+        content=[SimpleNamespace(type='text', text=text)],
+    )
+
+
 async def generate_answer(query: str, references: list[db.KnowledgeEntry]):
     """Calls Claude with the query and references; shared by the API and the answer eval."""
+    if MOCK_LLM:
+        return _mock_response(references)
     return await client.beta.messages.create(
         model=MODEL,
         max_tokens=16000,
