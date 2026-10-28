@@ -287,7 +287,9 @@
   {
     "category": "landlord_tenant",
     "question": "When does my landlord have to return my security deposit in Florida?",
-    "aliases": [],
+    "aliases": [
+      "My landlord kept my security deposit. What can I do?"
+    ],
     "answer": "If the landlord isn't keeping any of the deposit, they must return it within 15 days after you move out. If they intend to make deductions, they must send you a written notice by certified mail within 30 days explaining what they're keeping and why. You then have 15 days from receiving it to object in writing. If the landlord misses the 30-day notice deadline, they lose the right to make a claim against the deposit. Give your landlord your forwarding address in writing, and know that normal wear and tear cannot be deducted.",
     "sources": [
       "Fla. Stat. § 83.49"
