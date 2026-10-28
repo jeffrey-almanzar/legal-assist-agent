@@ -1,6 +1,7 @@
 # Per-caller hourly request limits, so no single caller can run up the Claude bill.
 
 # rate_limit.py
+import logging
 import random
 from datetime import datetime, timedelta, timezone
 
@@ -25,9 +26,13 @@ def limit_for(caller: Caller, bucket: str) -> int:
 
 async def enforce(caller: Caller, bucket: str) -> None:
     count, window_start = await db.count_request(caller.identity, bucket)
-    # Clean up expired windows now and then, rather than on a schedule.
+    # Clean up expired windows now and then, rather than on a schedule. It's housekeeping,
+    # so a failure is logged and never fails the caller's request.
     if random.random() < 0.01:
-        await db.delete_old_rate_limits()
+        try:
+            await db.delete_old_rate_limits()
+        except Exception:
+            logging.getLogger(__name__).exception('Failed to delete old rate limit windows')
 
     if count > limit_for(caller, bucket):
         window_end = window_start + timedelta(hours=1)

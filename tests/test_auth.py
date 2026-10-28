@@ -121,3 +121,16 @@ def test_mock_llm_skips_claude(monkeypatch):
     response = asyncio.run(services.generate_answer('free?', [ref]))
     assert response.model == 'mock'
     assert 'Is it free?' in services.response_text(response)
+
+
+def test_failed_cleanup_does_not_fail_the_request(monkeypatch):
+    async def failing_cleanup():
+        raise RuntimeError('database unavailable')
+
+    async def fake_process_query(query):
+        return QueryResult(query_id=uuid4(), response='ok')
+
+    monkeypatch.setattr(db, 'delete_old_rate_limits', failing_cleanup)
+    monkeypatch.setattr(rate_limit.random, 'random', lambda: 0.0)  # always run the cleanup
+    monkeypatch.setattr(legal_queries, 'process_query', fake_process_query)
+    assert client.post('/query', json={'query': 'hi'}).status_code == 200

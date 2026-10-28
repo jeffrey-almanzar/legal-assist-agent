@@ -11,4 +11,8 @@ def no_rate_limit_db(monkeypatch):
     async def fake_count_request(identity, bucket):
         return 1, datetime.now(timezone.utc).replace(minute=0, second=0, microsecond=0)
 
+    async def fake_delete_old_rate_limits():
+        pass
+
     monkeypatch.setattr(db, 'count_request', fake_count_request)
+    monkeypatch.setattr(db, 'delete_old_rate_limits', fake_delete_old_rate_limits)
