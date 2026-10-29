@@ -1,8 +1,10 @@
 # Defines the routes for handling legal queries, integrating with Claude.
 
 # legal_queries.py
+import logging
 from uuid import UUID
 
+import anthropic
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
 
@@ -40,6 +42,11 @@ async def handle_query(request: QueryRequest, caller: Caller = Depends(get_calle
         result = await process_query(request.query)
     except QueryRefusedError:
         raise HTTPException(status_code=422, detail='This query could not be answered.')
+    except anthropic.APIError as exc:
+        # Claude was unreachable or rejected the request (e.g. a bad API key). The failure is
+        # already recorded in query_log; log it here too and return a clean error, not a raw 500.
+        logging.getLogger(__name__).error('Claude API call failed: %r', exc)
+        raise HTTPException(status_code=503, detail='The answer service is temporarily unavailable.')
     return QueryResponse(
         query_id=result.query_id,
         response=result.response,

@@ -89,3 +89,19 @@ def test_feedback_unknown_query(monkeypatch):
 def test_feedback_rejects_invalid_rating():
     response = client.post('/feedback', json={'query_id': str(QUERY_ID), 'rating': 'meh'})
     assert response.status_code == 422
+
+
+def test_query_returns_503_when_claude_fails(monkeypatch):
+    import anthropic
+    import httpx
+
+    async def fake_process_query(query):
+        request = httpx.Request('POST', 'https://api.anthropic.com/v1/messages')
+        raise anthropic.AuthenticationError(
+            'invalid x-api-key', response=httpx.Response(401, request=request), body=None
+        )
+
+    monkeypatch.setattr(legal_queries, 'process_query', fake_process_query)
+    response = client.post('/query', json={'query': 'something'})
+    assert response.status_code == 503
+    assert response.json() == {'detail': 'The answer service is temporarily unavailable.'}

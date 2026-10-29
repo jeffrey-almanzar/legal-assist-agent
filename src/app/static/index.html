@@ -4,95 +4,153 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ask Jeff Legal Group</title>
+<meta name="description" content="Plain-language answers to common Florida law questions, based on information reviewed by Jeff Legal Group's attorneys.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e3b43'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' fill='%23fbfdfc' text-anchor='middle'%3EJL%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   /* Palette: Biscayne Bay water and mangrove ink, with one "citation amber" reserved for § marks. */
   :root {
     --bay-ink: #0e3b43;
+    --bay-ink-hover: #145059;
+    --on-ink: #fbfdfc;
     --text: #13262b;
     --muted: #546d69;
-    --rule: #c9d8d3;
+    --rule: #d3e0dc;
     --page: #e9f0ed;
     --surface: #fbfdfc;
+    --tint: #f2f7f5;
     --amber: #c98a12;
     --amber-wash: #f6e7c4;
     --danger: #9b2c2c;
+    --shadow: 0 1px 2px rgba(14, 59, 67, .06), 0 4px 16px rgba(14, 59, 67, .06);
     --display: 'Libre Caslon Display', 'Hoefler Text', Georgia, serif;
     --body: 'Public Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
     --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+    --width: 1120px;
   }
   @media (prefers-color-scheme: dark) {
     :root {
       --bay-ink: #9fd0cf;
+      --bay-ink-hover: #b8e0df;
+      --on-ink: #0b1f23;
       --text: #e2ece9;
       --muted: #93aca8;
       --rule: #29444a;
       --page: #0b1f23;
       --surface: #11282d;
+      --tint: #0f2328;
       --amber: #e8b44a;
       --amber-wash: #3a2f17;
       --danger: #f0a0a0;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 4px 16px rgba(0, 0, 0, .25);
     }
   }
 
   * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
   html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
+    /* Sticky footer: content grows, so the footer sits at the bottom even on short pages. */
+    min-height: 100vh; display: flex; flex-direction: column;
     background: var(--page);
     color: var(--text);
     font: 400 17px/1.6 var(--body);
   }
   :focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  a { color: inherit; }
+  .wrap { width: 100%; max-width: var(--width); margin: 0 auto; padding: 0 32px; }
+  .content { flex: 1 0 auto; }
+  .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  svg.icon { width: 16px; height: 16px; flex: none; }
 
-  .frame { max-width: 980px; margin: 0 auto; padding: 40px 24px 220px; }
-
-  header { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-  .firm { font: 400 15px var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--bay-ink); }
-  .contact { font-size: 14px; color: var(--muted); }
-  .contact a { color: inherit; }
-
-  .intro { margin: 72px 0 40px; max-width: 640px; }
-  .intro h1 {
-    margin: 0 0 16px;
-    font: 400 clamp(40px, 7vw, 64px)/1.02 var(--display);
-    color: var(--bay-ink);
+  /* Header: the firm's letterhead. */
+  .topbar { background: var(--surface); border-bottom: 1px solid var(--rule); }
+  .topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 72px; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .mark {
+    display: grid; place-items: center; width: 40px; height: 40px; border-radius: 6px;
+    background: var(--bay-ink); color: var(--on-ink);
+    font: 400 20px/1 var(--display); letter-spacing: .02em;
   }
-  .intro p { margin: 0; color: var(--muted); }
+  .brand-name { display: block; font: 400 21px/1.1 var(--display); color: var(--bay-ink); }
+  .brand-sub { display: block; font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
+  .topbar-actions { display: flex; align-items: center; gap: 20px; font-size: 15px; }
+  .topbar-actions .hours { color: var(--muted); }
+  .button {
+    display: inline-flex; align-items: center; gap: 8px;
+    font: 600 15px var(--body); text-decoration: none; cursor: pointer;
+    background: var(--bay-ink); color: var(--on-ink); border: 0; border-radius: 6px;
+    padding: 10px 16px;
+  }
+  .button:hover { background: var(--bay-ink-hover); }
 
-  .examples { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; padding: 0; list-style: none; }
+  /* Intro: the question on the left, what the firm covers on the right. */
+  .intro { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 56px; padding: 64px 0 48px; }
+  .eyebrow { margin: 0 0 14px; font: 600 13px var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--amber); }
+  .intro h1 { margin: 0 0 18px; font: 400 clamp(40px, 5.6vw, 62px)/1.04 var(--display); color: var(--bay-ink); }
+  .lede { margin: 0; color: var(--muted); max-width: 560px; }
+  .examples-label { margin: 32px 0 10px; font: 600 13px var(--body); color: var(--muted); }
+  .examples { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
   .examples button {
-    font: 400 15px var(--body); color: var(--text);
+    font: 400 15px var(--body); color: var(--text); text-align: left;
     background: var(--surface); border: 1px solid var(--rule); border-radius: 999px;
     padding: 8px 14px; cursor: pointer;
   }
-  .examples button:hover { border-color: var(--bay-ink); }
+  .examples button:hover { border-color: var(--bay-ink); color: var(--bay-ink); }
 
-  /* Each exchange: the answer on the left, the law it rests on in the margin. */
-  .thread { display: grid; gap: 48px; margin-top: 48px; }
-  .intro:not([hidden]) + .thread { margin-top: 0; }
-  .exchange { display: grid; grid-template-columns: minmax(0, 1fr) 230px; column-gap: 32px; }
-  .question {
-    grid-column: 1 / -1; margin: 0 0 14px;
-    font: 600 19px/1.4 var(--body); color: var(--bay-ink);
+  .office {
+    align-self: start; background: var(--surface); border: 1px solid var(--rule); border-radius: 8px;
+    box-shadow: var(--shadow); padding: 26px 28px;
   }
+  .office h2 { margin: 0 0 14px; font: 600 13px var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .areas { columns: 2; column-gap: 20px; margin: 0 0 22px; padding: 0; list-style: none; font-size: 15px; }
+  .areas li { break-inside: avoid; padding: 3px 0; }
+  .facts { display: grid; gap: 12px; margin: 0; padding: 20px 0 0; border-top: 1px solid var(--rule); list-style: none; font-size: 15px; }
+  .facts li { display: flex; gap: 10px; align-items: flex-start; }
+  .facts svg { margin-top: 4px; color: var(--bay-ink); }
+  .facts strong { font-weight: 600; }
+
+  /* Conversation. */
+  .thread { display: grid; gap: 44px; padding: 0 0 48px; }
+  .thread:not(:empty) { padding-top: 48px; }
+  .exchange { display: grid; grid-template-columns: minmax(0, 1fr) 240px; column-gap: 32px; row-gap: 14px; }
+  .you { grid-column: 1; justify-self: end; max-width: min(620px, 88%); }
+  .you p {
+    margin: 0; padding: 12px 18px; border-radius: 16px 16px 4px 16px;
+    background: var(--bay-ink); color: var(--on-ink); font-weight: 500;
+  }
+  .assistant { grid-column: 1; }
+  .speaker { display: flex; align-items: center; gap: 10px; margin: 0 0 10px; font: 600 14px var(--body); color: var(--bay-ink); }
+  .speaker .mark { width: 28px; height: 28px; font-size: 14px; border-radius: 5px; }
+  .speaker span.role { font-weight: 400; color: var(--muted); }
   .answer {
-    background: var(--surface); border: 1px solid var(--rule); border-radius: 6px;
-    padding: 22px 26px;
+    background: var(--surface); border: 1px solid var(--rule); border-radius: 8px;
+    box-shadow: var(--shadow); padding: 24px 28px;
   }
   .answer > :first-child { margin-top: 0; }
   .answer p, .answer ul, .answer ol { margin: 0 0 14px; }
   .answer ul, .answer ol { padding-left: 22px; }
   .answer li { margin-bottom: 6px; }
+  .answer strong { font-weight: 600; }
   .answer code { font: 500 14px var(--mono); }
-  .answer.status { color: var(--muted); font-style: italic; }
   .answer.error { color: var(--danger); }
-  .disclaimer { margin: 16px 0 0; padding-top: 12px; border-top: 1px solid var(--rule); font-size: 14px; color: var(--muted); }
+  .disclaimer {
+    display: flex; gap: 8px; align-items: flex-start;
+    margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--rule);
+    font-size: 14px; color: var(--muted);
+  }
+  .disclaimer svg { margin-top: 2px; }
 
-  .margin { padding-top: 4px; }
-  .margin h2 { margin: 0 0 10px; font: 600 12px var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .working { display: grid; gap: 12px; }
+  .working p { margin: 0 0 4px; font-size: 15px; color: var(--muted); }
+  .bar { height: 12px; border-radius: 6px; background: var(--tint); }
+  .bar:nth-child(3) { width: 92%; } .bar:nth-child(4) { width: 76%; }
+
+  .margin { grid-column: 2; grid-row: 2; padding-top: 40px; }
+  .margin h3 { margin: 0 0 12px; font: 600 12px var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
   .note { position: relative; padding-left: 26px; margin: 0 0 16px; font-size: 14px; line-height: 1.45; }
   .note::before {
     content: '§'; position: absolute; left: 0; top: -6px;
@@ -101,90 +159,184 @@
   .note .cite { display: block; margin-top: 4px; font: 400 12.5px/1.5 var(--mono); color: var(--muted); }
   .note.firm-note::before { content: '¶'; }
 
-  .feedback { grid-column: 1; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 12px; font-size: 14px; color: var(--muted); }
-  .feedback button, .composer button {
-    font: 600 14px var(--body); cursor: pointer; border-radius: 4px;
+  .actions { grid-column: 1; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+  .actions .label { margin-right: 4px; }
+  .chip-button {
+    display: inline-flex; align-items: center; gap: 6px;
+    font: 500 14px var(--body); color: var(--text); cursor: pointer;
+    background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 5px 12px;
   }
-  .feedback > button { background: none; border: 1px solid var(--rule); color: var(--text); padding: 4px 12px; }
-  .feedback > button:hover { border-color: var(--bay-ink); }
-  .feedback form { flex-basis: 100%; display: grid; gap: 8px; margin-top: 4px; }
-  .feedback textarea { font: 400 15px var(--body); color: var(--text); background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: 8px 10px; resize: vertical; min-height: 60px; }
-  .feedback form button { justify-self: start; background: var(--bay-ink); color: var(--surface); border: 0; padding: 6px 14px; }
+  .chip-button:hover { border-color: var(--bay-ink); color: var(--bay-ink); }
+  .actions .spacer { flex: 1; }
+  .actions form { flex-basis: 100%; display: grid; gap: 8px; margin-top: 4px; }
+  .actions textarea {
+    font: 400 15px var(--body); color: var(--text); background: var(--surface);
+    border: 1px solid var(--rule); border-radius: 6px; padding: 10px 12px; resize: vertical; min-height: 64px;
+  }
+  .actions form .button { justify-self: start; padding: 7px 14px; font-size: 14px; }
 
-  /* The composer stays docked at the bottom, like a legal pad under the conversation. */
-  .composer {
-    position: fixed; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(to bottom, transparent, var(--page) 28%);
-    padding: 32px 24px 20px;
+  /* Footer: the legal notice every firm site ends with. */
+  footer { border-top: 1px solid var(--rule); background: var(--surface); padding: 32px 0; font-size: 14px; color: var(--muted); }
+  /* During a conversation the footer is hidden, so the thread clears the docked composer itself. */
+  body.chatting footer { display: none; }
+  body.chatting .thread { padding-bottom: 180px; }
+  footer .wrap { display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; }
+  footer p { margin: 0 0 8px; }
+  footer .firm-line { font: 400 18px var(--display); color: var(--bay-ink); margin-bottom: 6px; }
+
+  /* Composer: the hero's main action on the empty page; once a conversation starts it moves
+     to a dock at the bottom, like a legal pad under the conversation. */
+  .composer { margin-top: 28px; }
+  .dock {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 2;
+    background: linear-gradient(to bottom, transparent, var(--page) 30%);
+    padding: 28px 0 16px;
   }
-  .composer form { max-width: 932px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: end; }
-  .composer textarea {
-    font: 400 17px/1.5 var(--body); color: var(--text);
-    background: var(--surface); border: 1px solid var(--rule); border-radius: 6px;
-    padding: 14px 16px; resize: none; min-height: 56px; max-height: 200px;
+  .dock .composer { margin-top: 0; }
+  .composer form {
+    display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: end;
+    background: var(--surface); border: 1px solid var(--rule); border-radius: 10px;
+    box-shadow: var(--shadow); padding: 8px 8px 8px 16px;
     border-bottom: 3px solid var(--amber-wash);
   }
-  .composer textarea:focus { border-bottom-color: var(--amber); outline: none; }
-  .composer button { background: var(--bay-ink); color: var(--surface); border: 0; padding: 0 22px; height: 56px; font-size: 16px; }
-  .composer button:disabled { opacity: .55; cursor: wait; }
-  .composer .hint { max-width: 932px; margin: 8px auto 0; font-size: 13px; color: var(--muted); }
+  .composer form:focus-within { border-bottom-color: var(--amber); }
+  .composer textarea {
+    font: 400 17px/1.5 var(--body); color: var(--text); background: transparent;
+    border: 0; resize: none; padding: 10px 0; min-height: 46px; max-height: 200px; outline: none;
+  }
+  .composer .button { height: 46px; padding: 0 18px; font-size: 16px; }
+  .composer .button:disabled { opacity: .55; cursor: wait; }
+  .composer .hint { display: flex; justify-content: space-between; gap: 16px; margin: 8px 4px 0; font-size: 13px; color: var(--muted); }
+  .intro .composer .hint .keys, .intro .composer .hint .demo-note { display: none; }
 
-  .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-
+  @media (max-width: 900px) {
+    .intro { grid-template-columns: 1fr; gap: 32px; padding: 40px 0 32px; }
+    .topbar-actions .hours { display: none; }
+    footer .wrap { grid-template-columns: 1fr; gap: 12px; }
+  }
   @media (max-width: 720px) {
     body { font-size: 16px; }
-    .frame { padding: 24px 16px 220px; }
-    .intro { margin: 40px 0 28px; }
+    .wrap { padding: 0 16px; }
+    .topbar .wrap { height: 64px; }
+    .brand-sub { display: none; }
+    .topbar-actions .phone-text { display: none; }
     .exchange { grid-template-columns: 1fr; }
+    .margin { grid-column: 1; grid-row: auto; padding-top: 0; }
     .answer { padding: 18px; }
-    .margin { margin-top: 14px; }
-    .composer { padding: 24px 16px 14px; }
-    .composer button { padding: 0 16px; }
+    .areas { columns: 1; }
+    .office { padding: 20px; }
+    .composer .hint .keys { display: none; }
   }
   @media (prefers-reduced-motion: no-preference) {
     .exchange { animation: rise .35s ease-out; }
     @keyframes rise { from { opacity: 0; transform: translateY(6px); } }
+    .bar { background: linear-gradient(90deg, var(--tint) 0%, var(--rule) 50%, var(--tint) 100%); background-size: 200% 100%; animation: shimmer 1.4s linear infinite; }
+    @keyframes shimmer { to { background-position: -200% 0; } }
   }
 </style>
 </head>
 <body>
-<div class="frame">
-  <header>
-    <span class="firm">Jeff Legal Group</span>
-    <span class="contact">Miami, Florida · <a href="tel:+13055550142">(305) 555-0142</a></span>
-  </header>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-info" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 7.2v4M8 4.8v.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 16 16"><path d="M5.2 2.5l1.3 2.8-1.4 1.1a8 8 0 004.5 4.5l1.1-1.4 2.8 1.3-.5 2.4c-6 .3-11-4.7-10.6-10.6z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></symbol>
+  <symbol id="i-up" viewBox="0 0 16 16"><path d="M5 7l2.5-5c1 0 1.8.8 1.8 1.8V6h3.4c.8 0 1.4.8 1.2 1.6l-1.1 5.1c-.1.6-.7 1-1.2 1H5zM2.5 7H5v6.7H2.5z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+  <symbol id="i-down" viewBox="0 0 16 16"><g transform="rotate(180 8 8)"><path d="M5 7l2.5-5c1 0 1.8.8 1.8 1.8V6h3.4c.8 0 1.4.8 1.2 1.6l-1.1 5.1c-.1.6-.7 1-1.2 1H5zM2.5 7H5v6.7H2.5z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></g></symbol>
+  <symbol id="i-copy" viewBox="0 0 16 16"><rect x="5" y="5" width="8.5" height="8.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M3 10.5V3.8C3 3.4 3.4 3 3.8 3h6.7" fill="none" stroke="currentColor" stroke-width="1.3"/></symbol>
+  <symbol id="i-send" viewBox="0 0 16 16"><path d="M8 13V3M3.5 7.5L8 3l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Jeff Legal Group, home">
+      <span class="mark" aria-hidden="true">JL</span>
+      <span>
+        <span class="brand-name">Jeff Legal Group</span>
+        <span class="brand-sub">Attorneys at law · Miami, Florida</span>
+      </span>
+    </a>
+    <div class="topbar-actions">
+      <span class="hours">Mon–Fri, 8:30 a.m.–5:30 p.m.</span>
+      <a class="button" href="tel:+13055550142"><svg class="icon"><use href="#i-phone"/></svg><span class="phone-text">(305) 555-0142</span><span class="visually-hidden">Call</span></a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap content">
   <section class="intro" id="intro">
-    <h1>Ask a question about Florida law.</h1>
-    <p>Get a plain-language answer based on information our attorneys have reviewed, with the statutes it relies on. This is general information, not legal advice.</p>
-    <ul class="examples" aria-label="Example questions">
-      <li><button type="button">My landlord kept my whole security deposit</button></li>
-      <li><button type="button">Is the first consultation free?</button></li>
-      <li><button type="button">I was arrested for DUI three days ago</button></li>
-      <li><button type="button">Will I have to pay alimony forever?</button></li>
-      <li><button type="button">¿Tienen abogados que hablen español?</button></li>
-    </ul>
+    <div>
+      <p class="eyebrow">Legal information assistant</p>
+      <h1>Ask a question about Florida law.</h1>
+      <p class="lede">Get a plain-language answer based on information our attorneys have reviewed, with the Florida statutes it relies on.</p>
+      <div class="composer" id="composer">
+        <form id="ask">
+          <label for="query" class="visually-hidden">Your question</label>
+          <textarea id="query" rows="1" maxlength="10000" placeholder="Ask about Florida law…" required></textarea>
+          <button type="submit" class="button" id="send"><span>Ask</span><svg class="icon"><use href="#i-send"/></svg></button>
+        </form>
+        <p class="hint"><span>Please don’t include names, case numbers, or other private details.<span class="demo-note"> Jeff Legal Group is a fictional firm.</span></span><span class="keys">Enter to send · Shift+Enter for a new line</span></p>
+      </div>
+      <p class="examples-label" id="examples-label">Common questions</p>
+      <ul class="examples" aria-labelledby="examples-label">
+        <li><button type="button">My landlord kept my whole security deposit</button></li>
+        <li><button type="button">Is the first consultation free?</button></li>
+        <li><button type="button">I was arrested for DUI three days ago</button></li>
+        <li><button type="button">Will I have to pay alimony forever?</button></li>
+        <li><button type="button">¿Tienen abogados que hablen español?</button></li>
+      </ul>
+    </div>
+
+    <aside class="office" aria-labelledby="areas-title">
+      <h2 id="areas-title">Practice areas</h2>
+      <ul class="areas">
+        <li>Family law</li>
+        <li>Estate planning &amp; probate</li>
+        <li>Personal injury</li>
+        <li>Employment</li>
+        <li>Landlord–tenant</li>
+        <li>Criminal defense &amp; traffic</li>
+        <li>Small claims &amp; consumer</li>
+        <li>Small business</li>
+      </ul>
+      <ul class="facts">
+        <li><svg class="icon"><use href="#i-check"/></svg><span><strong>Reviewed by our attorneys.</strong> Answers draw on information our lawyers have approved.</span></li>
+        <li><svg class="icon"><use href="#i-check"/></svg><span><strong>Free consultations</strong> for injury, employment, landlord–tenant, and criminal matters.</span></li>
+        <li><svg class="icon"><use href="#i-check"/></svg><span><strong>Se habla español.</strong> Consultations are available in Spanish.</span></li>
+      </ul>
+    </aside>
   </section>
 
   <main class="thread" id="thread" aria-live="polite"></main>
 </div>
 
-<div class="composer">
-  <form id="ask">
-    <label for="query" class="visually-hidden">Your question</label>
-    <textarea id="query" rows="1" maxlength="10000" placeholder="Type your question" required></textarea>
-    <button type="submit" id="send">Ask</button>
-  </form>
-  <p class="hint">Each question is answered on its own. Please don't include names, case numbers, or other private details.</p>
-</div>
+<footer>
+  <div class="wrap">
+    <div>
+      <p class="firm-line">Jeff Legal Group</p>
+      <p>The information on this page is general information about Florida law, not legal advice. Using this assistant doesn’t create an attorney-client relationship. For advice about your situation, speak with one of our attorneys.</p>
+      <p>Jeff Legal Group is a fictional firm created for a demonstration project.</p>
+    </div>
+    <div>
+      <p>Miami, Florida</p>
+      <p>Mon–Fri, 8:30 a.m.–5:30 p.m.</p>
+      <p><a href="tel:+13055550142">(305) 555-0142</a></p>
+      <p>© 2026 Jeff Legal Group</p>
+    </div>
+  </div>
+</footer>
+
+<div class="dock" id="dock" hidden><div class="wrap" id="dock-slot"></div></div>
 
 <script>
   const thread = document.getElementById('thread');
   const form = document.getElementById('ask');
   const input = document.getElementById('query');
   const send = document.getElementById('send');
+  const PHONE = '(305) 555-0142';
 
   const escapeHtml = (s) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const icon = (name) => `<svg class="icon" aria-hidden="true"><use href="#i-${name}"/></svg>`;
 
   // Minimal Markdown for Claude's answers: paragraphs, lists, bold, italics, code.
   // Text is escaped first, so the answer can never inject HTML.
@@ -216,7 +368,8 @@
   function renderMargin(references) {
     const margin = el('aside', 'margin');
     if (!references.length) return margin;
-    margin.append(el('h2', '', 'Firm answers consulted'));
+    margin.setAttribute('aria-label', 'Firm answers consulted');
+    margin.append(el('h3', '', 'Firm answers consulted'));
     for (const ref of references) {
       const note = el('p', ref.sources.length ? 'note' : 'note firm-note', escapeHtml(ref.question));
       if (ref.sources.length) note.append(el('span', 'cite', ref.sources.map(escapeHtml).join('<br>')));
@@ -225,25 +378,38 @@
     return margin;
   }
 
-  function renderFeedback(queryId) {
-    const box = el('div', 'feedback');
-    box.append(el('span', '', 'Was this helpful?'));
-    const yes = el('button', '', 'Yes');
-    const no = el('button', '', 'No');
-    yes.type = no.type = 'button';
-    box.append(yes, no);
+  function renderActions(queryId, answerText) {
+    const box = el('div', 'actions');
+    const yes = el('button', 'chip-button', `${icon('up')}Helpful`);
+    const no = el('button', 'chip-button', `${icon('down')}Not helpful`);
+    const copy = el('button', 'chip-button', `${icon('copy')}Copy answer`);
+    yes.type = no.type = copy.type = 'button';
+    const rating = el('span', 'rating');
+    rating.style.display = 'contents';
+    rating.append(el('span', 'label', 'Was this helpful?'), yes, no);
+    box.append(rating, el('span', 'spacer'), copy);
 
-    const submit = async (rating, comment) => {
-      box.replaceChildren(el('span', '', 'Sending…'));
+    copy.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(answerText);
+        copy.innerHTML = `${icon('check')}Copied`;
+      } catch {
+        copy.textContent = 'Couldn’t copy';
+      }
+    });
+
+    const submit = async (value, comment) => {
+      rating.replaceChildren(el('span', 'label', 'Sending…'));
+      box.querySelector('form')?.remove();
       try {
         const res = await fetch('/feedback', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ query_id: queryId, rating, comment: comment || null }),
+          body: JSON.stringify({ query_id: queryId, rating: value, comment: comment || null }),
         });
         if (!res.ok) throw new Error(res.status);
-        box.replaceChildren(el('span', '', 'Feedback sent. Thank you.'));
+        rating.replaceChildren(el('span', 'label', `${icon('check')} Thanks for your feedback.`));
       } catch {
-        box.replaceChildren(el('span', '', 'Feedback couldn’t be sent. Try again later.'));
+        rating.replaceChildren(el('span', 'label', 'Feedback couldn’t be sent. Try again later.'));
       }
     };
 
@@ -256,7 +422,7 @@
       text.id = label.htmlFor = `fb-${queryId}`;
       text.placeholder = 'What was wrong or missing? (optional)';
       text.maxLength = 2000;
-      const button = el('button', '', 'Send feedback');
+      const button = el('button', 'button', 'Send feedback');
       button.type = 'submit';
       f.append(label, text, button);
       f.addEventListener('submit', (e) => { e.preventDefault(); submit('down', text.value.trim()); });
@@ -272,23 +438,41 @@
   function errorMessage(res, data) {
     if (res.status === 429) {
       const minutes = Math.max(1, Math.ceil(Number(res.headers.get('Retry-After') || 3600) / 60));
-      return `You’ve reached the limit of questions for this hour. Try again in ${minutes} minute${minutes === 1 ? '' : 's'}, or call (305) 555-0142.`;
+      return `You’ve reached the limit of questions for this hour. Try again in ${minutes} minute${minutes === 1 ? '' : 's'}, or call ${PHONE}.`;
     }
     // A string detail means the assistant declined; a list means the request was invalid.
     if (res.status === 422 && typeof data.detail === 'string') {
-      return 'This question can’t be answered here. Call (305) 555-0142 to speak with an attorney.';
+      return `This question can’t be answered here. Call ${PHONE} to speak with an attorney.`;
+    }
+    if (res.status === 503) {
+      return `Answers are temporarily unavailable. Try again in a few minutes, or call ${PHONE}.`;
     }
     return 'Something went wrong getting an answer. Try again in a moment.';
   }
 
-  async function ask(question) {
+  function startConversation() {
+    if (document.body.classList.contains('chatting')) return;
+    document.getElementById('dock-slot').append(document.getElementById('composer'));
+    document.getElementById('dock').hidden = false;
     document.getElementById('intro').hidden = true;
+    document.body.classList.add('chatting');
+  }
+
+  async function ask(question) {
+    startConversation();
     const exchange = el('article', 'exchange');
-    exchange.append(el('p', 'question', escapeHtml(question)));
-    const answer = el('div', 'answer status', 'Checking the firm’s answers and writing a response…');
-    exchange.append(answer, el('aside', 'margin'));
+    const you = el('div', 'you');
+    you.append(el('p', '', escapeHtml(question)));
+    const assistant = el('div', 'assistant');
+    assistant.append(el('p', 'speaker', `<span class="mark" aria-hidden="true">JL</span>Jeff Legal Group <span class="role">· Legal information assistant</span>`));
+    const answer = el('div', 'answer working',
+      '<p>Searching attorney-reviewed answers…</p><div class="bar"></div><div class="bar"></div><div class="bar"></div>');
+    answer.setAttribute('aria-busy', 'true');
+    assistant.append(answer);
+    exchange.append(you, assistant, el('aside', 'margin'));
     thread.append(exchange);
-    exchange.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    you.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const writing = setTimeout(() => { const p = answer.querySelector('p'); if (p) p.textContent = 'Writing your answer…'; }, 1500);
 
     send.disabled = true;
     try {
@@ -300,14 +484,16 @@
       if (!res.ok) throw new ApiError(errorMessage(res, data));
       answer.className = 'answer';
       answer.innerHTML = renderMarkdown(data.response);
-      answer.append(el('p', 'disclaimer', escapeHtml(data.disclaimer)));
+      answer.append(el('p', 'disclaimer', `${icon('info')}<span>${escapeHtml(data.disclaimer)} Using this assistant doesn’t create an attorney-client relationship.</span>`));
       exchange.querySelector('.margin').replaceWith(renderMargin(data.references));
-      exchange.append(renderFeedback(data.query_id));
+      exchange.append(renderActions(data.query_id, data.response));
     } catch (err) {
       answer.className = 'answer error';
       answer.textContent = err instanceof ApiError
         ? err.message : 'Couldn’t reach the server. Check your connection and try again.';
     } finally {
+      clearTimeout(writing);
+      answer.removeAttribute('aria-busy');
       send.disabled = false;
       input.focus();
     }
