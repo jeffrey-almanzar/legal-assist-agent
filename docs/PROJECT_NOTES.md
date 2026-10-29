@@ -3,6 +3,7 @@
 How to run, operate and deploy the project. For what it is and why it's built this way, see the [README](../README.md).
 
 - [Running locally](#running-locally)
+- [API](#api)
 - [Configuration](#configuration)
 - [API keys](#api-keys)
 - [Maintaining the knowledge base](#maintaining-the-knowledge-base)
@@ -35,7 +36,29 @@ python -m scripts.seed              # load db/knowledge_base.json
 uvicorn app.main:app --reload       # restarts on every save
 ```
 
-**Without spending money:** set `MOCK_LLM=1` to replace the Claude call with a canned answer. Everything else is real. `/health` reports `"mock_llm": true` while it's on.
+**Without spending money:** set `MOCK_LLM=1` to replace the Claude call with a canned answer. Everything else is real. `/health` reports `"mock_llm": true` while it's on. In Docker: `docker compose run --rm --service-ports -e MOCK_LLM=1 app`.
+
+| Local URL | What |
+| --- | --- |
+| http://localhost:8000 | Chat page |
+| http://localhost:8000/docs | Interactive API docs (OpenAPI) |
+| http://localhost:8000/health | Health check |
+
+## API
+
+| Endpoint | Behavior |
+| --- | --- |
+| `POST /query` | Answers a question. Returns the answer, the references used (question and statutes), a disclaimer and a `query_id`. `422` if declined, `429` with `Retry-After` over the rate limit, `503` if Claude is unavailable. |
+| `POST /feedback` | Rates an answer (`up`/`down`, optional comment) by `query_id`. Records whether the rater was the public, a client key or an attorney key. |
+| `GET /health` | Liveness check, used by the load balancer. |
+| `GET /` | The chat page. |
+
+Both POST endpoints accept an optional `X-API-Key` header; without one, the caller is the public, limited by IP address.
+
+```bash
+curl -X POST localhost:8000/query -H 'Content-Type: application/json' \
+  -d '{"query": "My landlord still has my deposit 3 weeks after I moved out"}'
+```
 
 ## Configuration
 
