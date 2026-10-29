@@ -11,7 +11,25 @@ import asyncpg
 import numpy as np
 from pgvector.asyncpg import register_vector
 
-DATABASE_URL = os.environ.get('DATABASE_URL', 'postgresql://legal:legal@localhost:5432/legal')
+DEFAULT_DATABASE_URL = 'postgresql://legal:legal@localhost:5432/legal'
+
+
+def connection_options() -> dict:
+    """Connection settings from DATABASE_URL, or from separate DB_* variables.
+
+    On AWS, ECS injects the RDS host, user, and password as separate values from Secrets
+    Manager; passing them as keywords avoids URL-encoding a generated password.
+    """
+    if os.environ.get('DB_HOST'):
+        return {
+            'host': os.environ['DB_HOST'],
+            'port': int(os.environ.get('DB_PORT', '5432')),
+            'user': os.environ['DB_USER'],
+            'password': os.environ['DB_PASSWORD'],
+            'database': os.environ.get('DB_NAME', 'legal'),
+        }
+    return {'dsn': os.environ.get('DATABASE_URL', DEFAULT_DATABASE_URL)}
+
 
 # Cosine distance above which a knowledge base entry is treated as unrelated.
 # Calibrated on sample queries: real matches scored up to ~0.37, off-topic ones from ~0.39.
@@ -51,7 +69,7 @@ class QueryNotFoundError(Exception):
 
 async def connect() -> None:
     global pool
-    pool = await asyncpg.create_pool(DATABASE_URL, init=register_vector)
+    pool = await asyncpg.create_pool(**connection_options(), init=register_vector)
 
 
 async def close() -> None:

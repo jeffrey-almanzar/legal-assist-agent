@@ -27,13 +27,5 @@ services:
     # Locally, apply the schema and load the knowledge base before serving. Both are safe
     # to re-run. In production, run them as a one-off deploy step instead.
     command: sh -c "python -m scripts.init_db && python -m scripts.seed && uvicorn app.main:app --host 0.0.0.0 --port 8000"
-  localstack:
-    image: localstack/localstack
-    ports:
-      - '4566:4566'
-      - '4571:4571'
-    environment:
-      - SERVICES=apigateway,lambda,rds
-      - DEBUG=1
 volumes:
   pgdata:

@@ -1,0 +1,13 @@
+# How answers improve over time. Render with: d2 docs/diagrams/knowledge-loop.d2 docs/diagrams/knowledge-loop.svg
+vars: {d2-config: {layout-engine: elk}}
+direction: right
+
+file: "db/knowledge_base.json\n(source of truth, in git)" {shape: document}
+db: "PostgreSQL + pgvector" {shape: cylinder}
+app: "Chat page / API"
+attorney: "Attorney" {shape: person}
+
+file -> db: "scripts.seed\nembeds every phrasing,\nsyncs the table"
+db -> app: "retrieval for\nevery answer"
+app -> attorney: "scripts.export_feedback\nthumbs-down report (anyone)\ndraft entries (attorney 👍 only)"
+attorney -> file: "reviews drafts, adds statutes,\npromotes as entry or alias"

@@ -1,0 +1,18 @@
+# How a question is answered. Render with: d2 docs/diagrams/architecture.d2 docs/diagrams/architecture.svg
+shape: sequence_diagram
+
+visitor: Visitor
+api: FastAPI app
+embed: "fastembed\n(local model)"
+db: "PostgreSQL\n+ pgvector"
+claude: "Claude API\n(Opus 5.5)"
+
+visitor -> api: "POST /query"
+api -> db: "1. Count request in this hour's window (rate limit)"
+api -> embed: "2. Embed the question (384 dimensions)"
+api -> db: "3. Nearest phrasings by cosine distance (HNSW index)"
+db -> api: "Up to 4 firm-approved answers within 0.37, with statutes"
+api -> claude: "4. System prompt + references + question"
+claude -> api: "5. Answer (server-side fallback on refusal)"
+api -> db: "6. Log: references, tokens, latency, status"
+api -> visitor: "Answer + § citations + query_id"

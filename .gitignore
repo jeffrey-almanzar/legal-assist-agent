@@ -6,3 +6,8 @@ cdk.out/
 db/kb_candidates.json
 .DS_Store
 .cache/
+cdk-outputs.json
+# Original screenshots (contain the AWS account ID); README-ready copies are in docs/images/
+docs/deployment/
+# CDK context cache; contains the AWS account ID and isn't needed for synth in CI
+cdk.context.json

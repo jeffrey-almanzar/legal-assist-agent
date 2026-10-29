@@ -1,0 +1,28 @@
+# AWS deployment (src/infra/cdk_stack.py). Render with: d2 docs/diagrams/aws-deployment.d2 docs/diagrams/aws-deployment.svg
+direction: right
+
+visitor: Visitor {shape: person}
+anthropic: "Claude API" {shape: cloud}
+
+aws: "AWS · us-east-2 · one CloudFormation stack (cdk deploy)" {
+  vpc: "VPC (2 AZs, no NAT gateways)" {
+    public: Public subnets {
+      alb: "Application\nLoad Balancer\nhealth check /health"
+      task: "ECS Fargate task\nARM64 · 1 vCPU · 2 GB\nsame Docker image as local"
+    }
+    isolated: Isolated subnets (no internet route) {
+      rds: "RDS PostgreSQL 16\ndb.t4g.micro · pgvector\nencrypted" {shape: cylinder}
+    }
+  }
+  secrets: "Secrets Manager\nDB password · Anthropic key" {shape: stored_data}
+  logs: "CloudWatch Logs\n1-day retention" {shape: page}
+  ecr: "ECR\napp image (CDK asset)" {shape: package}
+}
+
+visitor -> aws.vpc.public.alb: HTTP
+aws.vpc.public.alb -> aws.vpc.public.task: ":8000"
+aws.vpc.public.task -> aws.vpc.isolated.rds: ":5432 (security group)"
+aws.secrets -> aws.vpc.public.task: injected at start
+aws.vpc.public.task -> aws.logs
+aws.ecr -> aws.vpc.public.task: image pull
+aws.vpc.public.task -> anthropic: "HTTPS (public IP)"

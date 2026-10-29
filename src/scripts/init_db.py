@@ -8,13 +8,13 @@ from pathlib import Path
 
 import asyncpg
 
-from app.db import DATABASE_URL
+from app.db import connection_options
 
 SCHEMA_PATH = Path(__file__).resolve().parents[2] / 'db' / 'init.sql'
 
 
 async def main() -> None:
-    conn = await asyncpg.connect(DATABASE_URL)
+    conn = await asyncpg.connect(**connection_options())
     try:
         await conn.execute(SCHEMA_PATH.read_text())
     finally:
