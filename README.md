@@ -4,8 +4,6 @@
 
 A legal information assistant for a (fictional) Miami law firm. It answers common Florida law questions in plain language, grounded in a knowledge base of firm-approved answers that it finds with **pgvector** similarity search, and cites the Florida statutes each answer relies on. Built with **FastAPI**, **PostgreSQL + pgvector** and the **Claude API**, and deployed to **AWS ECS Fargate and RDS** with the **AWS CDK**.
 
-The point of the project is the work that separates a demo chatbot from something a law firm could put in front of clients: measuring whether retrieval actually finds the right answer, keeping the model grounded in vetted content, failing safely, controlling the API bill, and closing the loop so attorneys can correct and extend what the assistant knows.
-
 **Stack:** Python 3.12 · FastAPI · Claude API (Opus 5.5) · PostgreSQL 16 + pgvector · fastembed (`bge-small-en-v1.5`) · AWS CDK (Python) · ECS Fargate · RDS · ALB · Secrets Manager · Docker · GitHub Actions · k6 · pytest
 
 ## At a glance
@@ -22,8 +20,8 @@ The point of the project is the work that separates a demo chatbot from somethin
 | **Performance** | 343 requests/s with p95 latency of 199 ms and 0 errors across 37,727 requests (app stack only, Claude mocked, one process on a laptop). |
 | **Deployed** | One script deploys 39 AWS resources with CDK: Fargate behind a load balancer, RDS PostgreSQL with pgvector, secrets in Secrets Manager. About $0.10/hour; one command tears it all down. |
 
-![The assistant answering a security deposit question: it applies the 15-day and 30-day deadlines to "3 weeks", lists next steps, and shows the firm-approved answers it consulted with their Florida statutes in the margin](docs/images/chat-answer.png)
-<sub>The deployed app on AWS. The answer works the user's "3 weeks" against both statutory deadlines; the margin lists the firm-approved answers retrieved for it, with the statutes they rely on.</sub>
+![The chat page served from AWS: the firm header, the question box with common questions, and a practice areas panel](docs/images/chat-home.png)
+<sub>The deployed app on AWS, served from the load balancer's address.</sub>
 
 ## Contents
 
@@ -78,7 +76,8 @@ To try everything without calling Claude, run in mock mode: `docker compose run 
 | http://localhost:8000/docs | Interactive API docs (OpenAPI) |
 | http://localhost:8000/health | Health check |
 
-![The chat page served from AWS: firm header, the question box with common questions, and a practice areas panel](docs/images/chat-home.png)
+![The assistant answering a security deposit question: it applies the 15-day and 30-day deadlines to "3 weeks", lists next steps, and shows the firm-approved answers it consulted with their Florida statutes in the margin](docs/images/chat-answer.png)
+<sub>An answer works the user's "3 weeks" against both statutory deadlines; the margin lists the firm-approved answers retrieved for it, with the statutes they rely on.</sub>
 
 ### API
 
